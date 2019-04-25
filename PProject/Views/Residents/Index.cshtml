@@ -1,0 +1,64 @@
+﻿@model PProject.Models.ListViewModel<PProject.Models.Residents.ResidentViewModel>
+@{
+    ViewBag.Title = "Residents";
+}
+<h2>Residents</h2>
+<div id="tableContainer" class="container">
+    <table id="residentsTable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+
+<script>
+    var dataSet = [
+        ["1", "123456789", "Edinburgh", "5421", "NONEHAHA"],
+        ["2", "123456789", "Edinburgh", "5421", "NONEHAHA"],
+        ["3", "123456789", "Edi", "5421", "NONEHAHA"],
+        ["4", "23456789", "Ediurgh", "5421", "NONEHAHA"],
+        ["5", "13456789", "Ednburgh", "5421", "NONEHAHA"],
+        ["6", "12456789", "Edirgh", "5421", "NONEHAHA"],
+        ["7", "12356789", "urgh", "5421", "NONEHAHA"],
+        ["8", "12346789", "inburgh", "5421", "NONEHAHA"],
+        ["9", "123459", "dinburgh", "5421", "NONEHAHA"],
+        ["1", "123456789", "Edinburgh", "5421", "NONEHAHA"],
+        ["1", "123456789", "Edinburgh", "5421", "NONEHAHA"],
+        ["1", "123456789", "Edinburgh", "5421", "NONEHAHA"],
+        ["1", "123456789", "Edinburgh", "5421", "NONEHAHA"],
+        ["1", "1346789", "Edinburgh", "5421", "NONEHAHA"],
+        ["1", "1256789", "Edinburgh", "5421", "NONEHAHA"],
+        ["1", "1356789", "Edinburgh", "5421", "NONEHAHA"],
+        ["1", "2346789", "Edinburgh", "5421", "NONEHAHA"],
+        ["1", "12345789", "Edinburgh", "5421", "NONEHAHA"],
+        ["1", "123456789", "Edinburgh", "5421", "NONEHAHA"],
+        ["1", "1256789", "Edinburgh", "5421", "NONEHAHA"]
+    ];
+    $(document).ready(function () {
+        //var table = $('#residentsTable');
+        var table = $('#residentsTable').DataTable({
+            data: dataSet,
+            columns: [
+                {
+                    title: "id_najemcy"
+                },
+                {
+                    title: "nr_telefonu"
+                },
+                {
+                    title: "imie"
+                },
+                {
+                    title: "nazwisko"
+                },
+                {
+                    title: "PESEL"
+                }
+            ]
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>

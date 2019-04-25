@@ -1,44 +1,66 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/MDB/js/bootstrap.min.js"></script>
+
+    <link href="~/Scripts/MDB/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Scripts/MDB/css/mdb.min.css" rel="stylesheet" />
+
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body style="padding: 0 0 0 0">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#80E380">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="navbar-header" width="90%">
+                <div class="d-flex" style="float: left">
+                    <h2>Estate management</h2>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+            <div class="d-flex" width="10%" style="float: right;">
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <div class="d-flex">
+        <div class="navbar align-content-start" style="background-color: palegreen; height:100vh">
+            <ul class="navbar-nav">
+                <li class=" nav-item">
+                    <a class="nav-link"><h3>@Html.ActionLink("Residents", "Index", "Residents")</h3></a>       <!--TODO-->
+                </li>
+                <li class=" nav-item">
+                    <a class="nav-link"><h3>@Html.ActionLink("Residences", "Index", "Residences")</h3></a>       <!--TODO-->
+                </li>
+                <li class=" nav-item">
+                    <a class="nav-link"><h3>@Html.ActionLink("Repairs", "Index", "Repairs")</h3></a>       <!--TODO-->
+                </li>
+            </ul>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/MDB/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/MDB/js/addons/datatables.min.js"></script>
+    <script src="~/Scripts/MDB/js/popper.min.js"></script>
+    <script src="~/Scripts/MDB/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/MDB/js/mdb.min.js"></script>
+
+
 </body>
 </html>

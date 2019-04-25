@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7872AF3B-926C-4CBE-B8D8-89666B15B7B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DB</RootNamespace>
+    <AssemblyName>DB</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="BDProject.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BDProject.edmx</DependentUpon>
+      <LastGenOutput>BDProject.cs</LastGenOutput>
+    </Content>
+    <None Include="App.config" />
+    <EntityDeploy Include="BDProject.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BDProject.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="BDProject.edmx.diagram">
+      <DependentUpon>BDProject.edmx</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BDProject.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BDProject.edmx</DependentUpon>
+      <LastGenOutput>BDProject.Context.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BDProject.Context.cs">
+      <DependentUpon>BDProject.Context.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="BDProject.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="BDProject.Designer.cs">
+      <DependentUpon>BDProject.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Budynki.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dozorcy.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FakturyNapraw.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FakturyWynajem.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Model\IResidentModel.cs" />
+    <Compile Include="Interfaces\Services\IResidentsService.cs" />
+    <Compile Include="Mieszkania.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Najemcy.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Naprawy.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Platnosci.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StanyNapraw.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StanyUsterek.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usterki.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Wynajmy.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implementation\Model\" />
+    <Folder Include="Implementation\Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
