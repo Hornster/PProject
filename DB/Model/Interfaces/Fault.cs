@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DB.Interfaces.Services
+namespace DB.Model.Interfaces
 {
-    public interface IResidentsService
+    public interface IFault
     {
     }
 }

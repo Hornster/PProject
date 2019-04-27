@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PProject;
+﻿using System.Collections.Generic;
 
-namespace DB.Interfaces.Model
+namespace DB.Model.Interfaces
 {
     public interface IResidentModel
     {
@@ -14,7 +9,5 @@ namespace DB.Interfaces.Model
         string imie { get; set; }
         string nazwisko { get; set; }
         string PESEL { get; set; }
-
-        ICollection<Wynajmy> Wynajmy { get; set; }
     }
 }

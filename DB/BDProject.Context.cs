@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PProject
+namespace DB
 {
     using System;
     using System.Data.Entity;

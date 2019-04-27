@@ -89,8 +89,22 @@
     <Compile Include="Firmy.cs">
       <DependentUpon>BDProject.tt</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Model\IResidentModel.cs" />
-    <Compile Include="Interfaces\Services\IResidentsService.cs" />
+    <Compile Include="Model\Implementation\BuildingModel.cs" />
+    <Compile Include="Model\Implementation\ResidenceModel.cs" />
+    <Compile Include="Model\Implementation\ResidentModel.cs" />
+    <Compile Include="Model\Interfaces\Fault.cs" />
+    <Compile Include="Model\Interfaces\IBuildingModel.cs" />
+    <Compile Include="Model\Interfaces\IRepairModel.cs" />
+    <Compile Include="Model\Interfaces\IResidenceModel.cs" />
+    <Compile Include="Model\Implementation\RepairModel.cs" />
+    <Compile Include="Services\Implementation\RepairsService.cs" />
+    <Compile Include="Services\Implementation\ResidencesService.cs" />
+    <Compile Include="Services\Implementation\ResidentsService.cs" />
+    <Compile Include="Model\Interfaces\IResidentModel.cs" />
+    <Compile Include="Services\Interfaces\IRepairsService.cs" />
+    <Compile Include="Services\Interfaces\IResidencesService.cs" />
+    <Compile Include="Services\Interfaces\IResidentsService.cs" />
+    <Compile Include="Mappers\ModelMapper.cs" />
     <Compile Include="Mieszkania.cs">
       <DependentUpon>BDProject.tt</DependentUpon>
     </Compile>
@@ -117,18 +131,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Implementation\Model\" />
-    <Folder Include="Implementation\Services\" />
+    <Folder Include="Mappers\MapperHelpers\" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.1.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

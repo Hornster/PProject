@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Budynki">
           <Key>
             <PropertyRef Name="id_budynku" />
@@ -136,11 +136,11 @@ warning 6013: The table/view 'DBProject.dbo.Dozorowania' does not have a primary
         </EntityType>
         <!--Errors Found During Generation:
 error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__Dozorowan__id_bu__2C3393D0" />-->
+        <Association Name="FK__Dozorowan__id_bu__534D60F1" />-->
         <!--Errors Found During Generation:
 error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__Dozorowan__id_do__2B3F6F97" />-->
-        <Association Name="FK__FakturyNa__id_na__24927208">
+        <Association Name="FK__Dozorowan__id_do__52593CB8" />-->
+        <Association Name="FK__FakturyNa__id_na__4BAC3F29">
           <End Role="Naprawy" Type="Self.Naprawy" Multiplicity="0..1" />
           <End Role="FakturyNapraw" Type="Self.FakturyNapraw" Multiplicity="*" />
           <ReferentialConstraint>
@@ -152,7 +152,7 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__FakturyWy__id_wy__35BCFE0A">
+        <Association Name="FK__FakturyWy__id_wy__5CD6CB2B">
           <End Role="Wynajmy" Type="Self.Wynajmy" Multiplicity="0..1" />
           <End Role="FakturyWynajem" Type="Self.FakturyWynajem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -164,7 +164,7 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Mieszkani__id_bu__164452B1">
+        <Association Name="FK__Mieszkani__id_bu__3D5E1FD2">
           <End Role="Budynki" Type="Self.Budynki" Multiplicity="0..1" />
           <End Role="Mieszkania" Type="Self.Mieszkania" Multiplicity="*" />
           <ReferentialConstraint>
@@ -176,7 +176,7 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Naprawy__id_firm__1FCDBCEB">
+        <Association Name="FK__Naprawy__id_firm__46E78A0C">
           <End Role="Firmy" Type="Self.Firmy" Multiplicity="0..1" />
           <End Role="Naprawy" Type="Self.Naprawy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -188,7 +188,7 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Naprawy__id_uste__1ED998B2">
+        <Association Name="FK__Naprawy__id_uste__45F365D3">
           <End Role="Usterki" Type="Self.Usterki" Multiplicity="0..1" />
           <End Role="Naprawy" Type="Self.Naprawy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -200,7 +200,7 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Naprawy__stan__20C1E124">
+        <Association Name="FK__Naprawy__stan__47DBAE45">
           <End Role="StanyNapraw" Type="Self.StanyNapraw" Multiplicity="0..1" />
           <End Role="Naprawy" Type="Self.Naprawy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -212,7 +212,7 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Platnosci__id_wy__398D8EEE">
+        <Association Name="FK__Platnosci__id_wy__60A75C0F">
           <End Role="Wynajmy" Type="Self.Wynajmy" Multiplicity="0..1" />
           <End Role="Platnosci" Type="Self.Platnosci" Multiplicity="*" />
           <ReferentialConstraint>
@@ -224,7 +224,7 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usterki__id_mies__1920BF5C">
+        <Association Name="FK__Usterki__id_mies__403A8C7D">
           <End Role="Mieszkania" Type="Self.Mieszkania" Multiplicity="0..1" />
           <End Role="Usterki" Type="Self.Usterki" Multiplicity="*" />
           <ReferentialConstraint>
@@ -236,7 +236,7 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usterki__stan__1A14E395">
+        <Association Name="FK__Usterki__stan__412EB0B6">
           <End Role="StanyUsterek" Type="Self.StanyUsterek" Multiplicity="0..1" />
           <End Role="Usterki" Type="Self.Usterki" Multiplicity="*" />
           <ReferentialConstraint>
@@ -248,7 +248,7 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Wynajmy__id_mies__31EC6D26">
+        <Association Name="FK__Wynajmy__id_mies__59063A47">
           <End Role="Mieszkania" Type="Self.Mieszkania" Multiplicity="0..1" />
           <End Role="Wynajmy" Type="Self.Wynajmy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -260,7 +260,7 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Wynajmy__id_naje__32E0915F">
+        <Association Name="FK__Wynajmy__id_naje__59FA5E80">
           <End Role="Najemcy" Type="Self.Najemcy" Multiplicity="0..1" />
           <End Role="Wynajmy" Type="Self.Wynajmy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -286,53 +286,52 @@ error 6004: The table 'DBProject.dbo.Dozorowania' is referenced by a relationshi
           <EntitySet Name="StanyUsterek" EntityType="Self.StanyUsterek" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usterki" EntityType="Self.Usterki" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wynajmy" EntityType="Self.Wynajmy" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__FakturyNa__id_na__24927208" Association="Self.FK__FakturyNa__id_na__24927208">
+          <AssociationSet Name="FK__FakturyNa__id_na__4BAC3F29" Association="Self.FK__FakturyNa__id_na__4BAC3F29">
             <End Role="Naprawy" EntitySet="Naprawy" />
             <End Role="FakturyNapraw" EntitySet="FakturyNapraw" />
           </AssociationSet>
-          <AssociationSet Name="FK__FakturyWy__id_wy__35BCFE0A" Association="Self.FK__FakturyWy__id_wy__35BCFE0A">
+          <AssociationSet Name="FK__FakturyWy__id_wy__5CD6CB2B" Association="Self.FK__FakturyWy__id_wy__5CD6CB2B">
             <End Role="Wynajmy" EntitySet="Wynajmy" />
             <End Role="FakturyWynajem" EntitySet="FakturyWynajem" />
           </AssociationSet>
-          <AssociationSet Name="FK__Mieszkani__id_bu__164452B1" Association="Self.FK__Mieszkani__id_bu__164452B1">
+          <AssociationSet Name="FK__Mieszkani__id_bu__3D5E1FD2" Association="Self.FK__Mieszkani__id_bu__3D5E1FD2">
             <End Role="Budynki" EntitySet="Budynki" />
             <End Role="Mieszkania" EntitySet="Mieszkania" />
           </AssociationSet>
-          <AssociationSet Name="FK__Naprawy__id_firm__1FCDBCEB" Association="Self.FK__Naprawy__id_firm__1FCDBCEB">
+          <AssociationSet Name="FK__Naprawy__id_firm__46E78A0C" Association="Self.FK__Naprawy__id_firm__46E78A0C">
             <End Role="Firmy" EntitySet="Firmy" />
             <End Role="Naprawy" EntitySet="Naprawy" />
           </AssociationSet>
-          <AssociationSet Name="FK__Naprawy__id_uste__1ED998B2" Association="Self.FK__Naprawy__id_uste__1ED998B2">
+          <AssociationSet Name="FK__Naprawy__id_uste__45F365D3" Association="Self.FK__Naprawy__id_uste__45F365D3">
             <End Role="Usterki" EntitySet="Usterki" />
             <End Role="Naprawy" EntitySet="Naprawy" />
           </AssociationSet>
-          <AssociationSet Name="FK__Naprawy__stan__20C1E124" Association="Self.FK__Naprawy__stan__20C1E124">
+          <AssociationSet Name="FK__Naprawy__stan__47DBAE45" Association="Self.FK__Naprawy__stan__47DBAE45">
             <End Role="StanyNapraw" EntitySet="StanyNapraw" />
             <End Role="Naprawy" EntitySet="Naprawy" />
           </AssociationSet>
-          <AssociationSet Name="FK__Platnosci__id_wy__398D8EEE" Association="Self.FK__Platnosci__id_wy__398D8EEE">
+          <AssociationSet Name="FK__Platnosci__id_wy__60A75C0F" Association="Self.FK__Platnosci__id_wy__60A75C0F">
             <End Role="Wynajmy" EntitySet="Wynajmy" />
             <End Role="Platnosci" EntitySet="Platnosci" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usterki__id_mies__1920BF5C" Association="Self.FK__Usterki__id_mies__1920BF5C">
+          <AssociationSet Name="FK__Usterki__id_mies__403A8C7D" Association="Self.FK__Usterki__id_mies__403A8C7D">
             <End Role="Mieszkania" EntitySet="Mieszkania" />
             <End Role="Usterki" EntitySet="Usterki" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usterki__stan__1A14E395" Association="Self.FK__Usterki__stan__1A14E395">
+          <AssociationSet Name="FK__Usterki__stan__412EB0B6" Association="Self.FK__Usterki__stan__412EB0B6">
             <End Role="StanyUsterek" EntitySet="StanyUsterek" />
             <End Role="Usterki" EntitySet="Usterki" />
           </AssociationSet>
-          <AssociationSet Name="FK__Wynajmy__id_mies__31EC6D26" Association="Self.FK__Wynajmy__id_mies__31EC6D26">
+          <AssociationSet Name="FK__Wynajmy__id_mies__59063A47" Association="Self.FK__Wynajmy__id_mies__59063A47">
             <End Role="Mieszkania" EntitySet="Mieszkania" />
             <End Role="Wynajmy" EntitySet="Wynajmy" />
           </AssociationSet>
-          <AssociationSet Name="FK__Wynajmy__id_naje__32E0915F" Association="Self.FK__Wynajmy__id_naje__32E0915F">
+          <AssociationSet Name="FK__Wynajmy__id_naje__59FA5E80" Association="Self.FK__Wynajmy__id_naje__59FA5E80">
             <End Role="Najemcy" EntitySet="Najemcy" />
             <End Role="Wynajmy" EntitySet="Wynajmy" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
