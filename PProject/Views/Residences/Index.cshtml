@@ -9,6 +9,7 @@
     <table id="buildingsTable" class="table table-striped table-bordered" style="width:100%">
         <thead>
         <tr>
+            <th></th> @*Details*@
             <th scope="col">Building ID</th>
             <th scope="col">Address</th>
             @*Iterate each element in model for given row in table.*@
@@ -20,6 +21,7 @@
             foreach (var building in Model.Items)
             {
                 <tr>
+                    <td><a href="@Url.Action("GetBuildingDetails", "Residences")?buildingId=@building.id_budynku"><i class="fas fa-book mr-2 grey-text" aria-hidden="true"></i></a></td>
                     <td>@building.id_budynku</td>
                     <td>@building.adres_budynku</td>
                 </tr>
@@ -42,4 +44,5 @@
         var table = $('#buildingsTable').DataTable();
         $('.dataTables_length').addClass('bs-select');
     });
+    
 </script>

@@ -1,0 +1,29 @@
+﻿@model PProject.Models.Residences.BuildingListViewModel
+@{
+    ViewBag.Title = "Edit Residence";
+}
+
+<h2>Edit/Add Residence</h2>
+
+<div id="editInputs" class="container" style="float:left">
+    <div id="number" class="md-form">
+        <i class="fas fa-user prefix"></i>
+        <input value="@Model.Items[0].numer" type="number" id="inputIconEx2" class="quantity" min="0">
+        <label for="inputIconEx2">Residence number</label>
+    </div>
+    <div id="surface" class="md-form">
+        <i class="fas fa-user prefix"></i>
+        <input value="@Model.Items[0].metraz" type="number" id="inputIconEx2" class="quantity" min="0">
+        <label for="inputIconEx2">Surface</label>
+    </div>
+    <div id="description" class="input-group">
+        <i class="fas fa-user prefix"></i>
+        <textarea class="form-control" value="@Model.Items[0].opis" type="text"></textarea>
+        <label for="inputIconEx2">Description</label>
+    </div>
+</div>
+
+<div id="controlButtons" class="container" style="float: right">
+    <button type="button" class="btn btn-success">Confirm</button>
+    <button type="button" class="btn btn-light">Cancel</button>
+</div>

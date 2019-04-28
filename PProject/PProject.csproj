@@ -190,11 +190,13 @@
     <Compile Include="Mapper\ViewModelMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Residences\BuildingListViewModel.cs" />
     <Compile Include="Models\Residences\BuildingViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Repairs\RepairViewModel.cs" />
+    <Compile Include="Models\Residences\ResidenceViewModel.cs" />
     <Compile Include="Models\Residents\ResidentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -414,6 +416,8 @@
     <Content Include="Scripts\MDB\scss\_custom-styles.scss" />
     <Content Include="Scripts\MDB\scss\_custom-variables.scss" />
     <Content Include="Scripts\MDB\Useful_Resources.pdf" />
+    <Content Include="Views\Residences\BuildingDetails.cshtml" />
+    <Content Include="Views\Residences\EditResidence.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
