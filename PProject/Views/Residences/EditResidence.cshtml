@@ -2,28 +2,80 @@
 @{
     ViewBag.Title = "Edit Residence";
 }
+<input value="@Model.BuildingId" id="residenceBuildingId" style="visibility: hidden">
+<input value="@Model.Items[0].id_mieszkania" id="residenceId" style="visibility: hidden">
 
-<h2>Edit/Add Residence</h2>
-
-<div id="editInputs" class="container" style="float:left">
-    <div id="number" class="md-form">
-        <i class="fas fa-user prefix"></i>
-        <input value="@Model.Items[0].numer" type="number" id="inputIconEx2" class="quantity" min="0">
-        <label for="inputIconEx2">Residence number</label>
-    </div>
-    <div id="surface" class="md-form">
-        <i class="fas fa-user prefix"></i>
-        <input value="@Model.Items[0].metraz" type="number" id="inputIconEx2" class="quantity" min="0">
-        <label for="inputIconEx2">Surface</label>
-    </div>
-    <div id="description" class="input-group">
-        <i class="fas fa-user prefix"></i>
-        <textarea class="form-control" value="@Model.Items[0].opis" type="text"></textarea>
-        <label for="inputIconEx2">Description</label>
+<div id="editInputs" class="container" style="float: left; width: 100%">
+    <div class="jumbotron">
+        <h2>Edit/Add Residence</h2>
+        <div id="number" class="md-form">
+            <input value="@Model.Items[0].numer" type="number" id="residenceNumberInput" class="quantity" min="0">
+            <label for="residenceNumberInput">Residence number</label>
+        </div>
+        <div id="surface" class="md-form">
+            <input value="@Model.Items[0].metraz" step="any" type="number" id="residenceSurfaceInput" class="quantity" min="0">
+            <label for="residenceSurfaceInput">Surface</label>
+        </div>
+        <div id="description" class="input-group">
+            <textarea class="form-control" value="@Model.Items[0].opis" id="residenceDescriptionInput" type="text">@Model.Items[0].opis</textarea>
+            <label for="residenceDescriptionInput">Description</label>
+        </div>
     </div>
 </div>
 
 <div id="controlButtons" class="container" style="float: right">
-    <button type="button" class="btn btn-success">Confirm</button>
-    <button type="button" class="btn btn-light">Cancel</button>
+    <button onclick="onChangesConfirm(@Model.BuildingId)" type="button" class="btn btn-success">Confirm</button>
+    <button onclick="onCancel(@Model.BuildingId)" type="button" class="btn btn-light">Cancel</button>
 </div>
+
+<div class="modal fade" id="wrongInputModal" tabindex="-1" role="dialog" aria-labelledby="wrongInputLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="wrongInputLabel">Incorrect input</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Residence number and surface have to have values!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function onChangesConfirm() {
+        var buildingId = $('#residenceBuildingId')[0].value;
+        var residenceId = $('#residenceId')[0].value;
+        var newNumber = $('#residenceNumberInput')[0].value;
+        var newSize = $('#residenceSurfaceInput')[0].value;
+        var newDescription = $('#residenceDescriptionInput')[0].value;
+
+        if (newNumber === null || newSize === null) {
+            $('#wrongInputModal').modal('show'); //show popup - one of required data chunks is incomplete.
+        } else if (newNumber === "" || newSize === "")
+        {
+            $('#wrongInputModal').modal('show'); //show popup - one of required data chunks is incomplete.
+        }else {
+            $.post("@Url.Action("ConfirmResidenceChange", "Residences")",
+                {
+                    buildingId: buildingId,
+                    residenceId: residenceId,
+                    residenceNumber: newNumber,
+                    residenceSurface: newSize,
+                    residenceDescription: newDescription
+                }).then(function() {
+                    location.href = '@Url.Action("GetBuildingDetails", "Residences")?buildingId=' + buildingId;
+            });
+        }
+    }
+
+    function onCancel(buildingId) {
+        location.href = '@Url.Action("GetBuildingDetails", "Residences")?buildingId=' + buildingId;
+    }
+</script>

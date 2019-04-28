@@ -24,6 +24,12 @@ namespace DB.Services.Interfaces
         /// <returns></returns>
         ResidenceModel GetSingleResidence(int buildingId, int residenceId);
         /// <summary>
+        /// Returns a single building, if found any. If not - returns null, most likely.
+        /// </summary>
+        /// <param name="buildingId"></param>
+        /// <returns></returns>
+        BuildingModel GetSingleBuilding(int buildingId);
+        /// <summary>
         /// Wipes out given residence from the database.
         /// </summary>
         /// <param name="buildingId"></param>
@@ -34,5 +40,10 @@ namespace DB.Services.Interfaces
         /// </summary>
         /// <param name="newResidence"></param>
         void AddOrEditResidence(ResidenceModel newResidence);
+        /// <summary>
+        /// Tries to update provided building. If resembling row doesn't exist - adds it to the DB.
+        /// </summary>
+        /// <param name="newBuilding"></param>
+        void AddOrEditBuilding(BuildingModel newBuilding);
     }
 }

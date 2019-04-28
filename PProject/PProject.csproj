@@ -418,6 +418,7 @@
     <Content Include="Scripts\MDB\Useful_Resources.pdf" />
     <Content Include="Views\Residences\BuildingDetails.cshtml" />
     <Content Include="Views\Residences\EditResidence.cshtml" />
+    <Content Include="Views\Residences\EditBuilding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,6 +76,26 @@ namespace DB.Services.Implementation
             return residence;
         }
 
+        public BuildingModel GetSingleBuilding(int buildingId)
+        {
+            var building = new BuildingModel();
+            try
+            {
+                using (var ctx = new DBProjectEntities())
+                {
+                    var queryResult = ctx.Budynki.Find(buildingId);
+
+                    building = ModelMapper.Mapper.Map<BuildingModel>(queryResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return building;
+        }
+
         public void RemoveResidence(int buildingId, int residenceId)
         {
             try
@@ -110,7 +131,36 @@ namespace DB.Services.Implementation
                     }
                     else//There's a record that contains the residence already - modify it.
                     {
-                        residence = ModelMapper.Mapper.Map<Mieszkania>(newResidence);
+                        residence.numer = newResidence.numer;
+                        residence.metraz = newResidence.metraz;
+                        residence.opis = newResidence.opis;
+                        //ctx.Entry(residence).State = EntityState.Modified;
+                    }
+                    ctx.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void AddOrEditBuilding(BuildingModel newBuilding)
+        {
+            try
+            {
+                using (var ctx = new DBProjectEntities())
+                {
+                    var building = ctx.Budynki.Find(newBuilding.id_budynku);
+                    if (building == null)  //DB did not find any record like provided one. Add it.
+                    {
+                        building = ModelMapper.Mapper.Map<Budynki>(newBuilding);
+                        ctx.Budynki.Add(building);
+                    }
+                    else//There's a record that contains the residence already - modify it.
+                    {
+                        building.adres_budynku = newBuilding.adres_budynku;
+                        //ctx.Entry(residence).State = EntityState.Modified;
                     }
                     ctx.SaveChanges();
                 }
