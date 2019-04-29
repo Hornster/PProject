@@ -13,7 +13,8 @@
     <table id="residentsTable" class="table table-striped table-bordered" style="width:100%">
         <thead>
         <tr>
-            <th scope="col">Resident ID</th>
+            <th scope="col" class="col-sm-1"></th>
+            <th scope="col" class="col-sm-1">Resident ID</th>
             <th scope="col">Phone</th>
             <th scope="col">Name</th>
             <th scope="col">Surname</th>
@@ -26,19 +27,20 @@
         {
             foreach (var resident in Model.Items)
              {
-                 <tr>
-                     <td>@resident.id_najemcy</td>
-                     <td>@resident.nr_telefonu</td>
-                     <td>@resident.imie</td>
-                     <td>@resident.nazwisko</td>
-                     <td>@resident.PESEL</td>
-                 </tr>
+            <tr>
+                <td><a href="@Url.Action("EditResident", "Residents")?residentId=@resident.id_najemcy"><i class="fas fa-edit hoverable"></i></a></td>
+                <td>@resident.id_najemcy</td>
+                <td>@resident.nr_telefonu</td>
+                <td>@resident.imie</td>
+                <td>@resident.nazwisko</td>
+                <td>@resident.PESEL</td>
+            </tr>
              }
         }
         else
         {
             <tr>
-                <td colspan="5" style="text-align: center">No items to display.</td>
+                <td colspan="6" style="text-align: center">No items to display.</td>
             </tr>
         }
 

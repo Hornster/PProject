@@ -1,0 +1,93 @@
+﻿@model PProject.Models.Residents.ResidentViewModel
+@{
+    ViewBag.Title = "EditResident";
+}
+<input value="@Model.id_najemcy" id="residentId" style="visibility: hidden">
+
+<div id="editInputs" class="container" style="float: left; width: 100%">
+    <div class="jumbotron">
+        <h2>Edit/Add Resident</h2>
+        <div id="residentName" class="md-form">
+            <input value="@Model.imie" type="text" id="residentNameInput" class="md-form">
+            <label for="residentNameInput">Resident Name</label>
+        </div>
+        <div id="residentSurname" class="md-form">
+            <input value="@Model.nazwisko" type="text" id="residentSurnameInput" class="md-form">
+            <label for="residentSurnameInput">Resident Surname</label>
+        </div>
+        <div id="residentPhone" class="md-form">
+            <input value="@Model.nr_telefonu" type="text" id="residentPhoneInput" class="md-form">
+            <label for="residentPhoneInput">Mobile Number</label>
+        </div>
+        <div id="residentPESEL" class="md-form">
+            <input value="@Model.PESEL" type="text" id="residentPESELInput" class="md-form">
+            <label for="residentPESELInput">PESEL</label>
+        </div>
+    </div>
+</div>
+
+<div id="controlButtons" class="container" style="float: right">
+    <button onclick="onChangesConfirm(@Model.id_najemcy)" type="button" class="btn btn-success">Confirm</button>
+    <button onclick="onCancel(@Model.id_najemcy)" type="button" class="btn btn-light">Cancel</button>
+</div>
+
+<div class="modal fade" id="wrongInputModal" tabindex="-1" role="dialog" aria-labelledby="wrongInputLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="wrongInputLabel">Incorrect input</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                All positions must be filled!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function onChangesConfirm() {
+        var residentId = $('#residentId')[0].value;
+        var residentName = $('#residentNameInput')[0].value;
+        var residentSurname = $('#residentSurnameInput')[0].value;
+        var residentPhone = $('#residentPhoneInput')[0].value;
+        var residentPESEL = $('#residentPESELInput')[0].value;
+
+        if (!allFieldsFilled(residentName, residentSurname, residentPhone, residentPESEL)) {
+            $('#wrongInputModal').modal('show'); //show popup - one of required data chunks is incomplete.
+        }else {
+            $.post("@Url.Action("ConfirmResidentChange", "Residents")",
+                {
+                    residentId: residentId,
+                    residentName: residentName,
+                    residentSurname: residentSurname,
+                    residentPhone: residentPhone,
+                    residentPESEL: residentPESEL
+                }).then(function() {
+                location.href = '@Url.Action("Index", "Residents")';
+            });
+        }
+    }
+
+    function onCancel() {
+        location.href = '@Url.Action("Index", "Residents")';
+    }
+
+    function allFieldsFilled(residentName, residentSurname, residentPhone, residentPESEL) {
+        if (residentName === null || residentSurname === null
+            || residentPhone === null || residentPESEL === null) {
+            return false; //show popup - one of required data chunks is incomplete.
+        } else if (residentName === "" || residentSurname === ""
+            || residentPhone === "" || residentPESEL === "") {
+            return false; //show popup - one of required data chunks is incomplete.
+        }
+
+        return true;
+    }
+</script>

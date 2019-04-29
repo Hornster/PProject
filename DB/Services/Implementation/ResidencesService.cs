@@ -181,7 +181,6 @@ namespace DB.Services.Implementation
                     else//There's a record that contains the residence already - modify it.
                     {
                         building.adres_budynku = newBuilding.adres_budynku;
-                        //ctx.Entry(residence).State = EntityState.Modified;
                     }
                     ctx.SaveChanges();
                 }

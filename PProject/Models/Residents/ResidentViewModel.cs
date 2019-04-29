@@ -14,6 +14,5 @@ namespace PProject.Models.Residents
         public string imie { get; set; }
         public string nazwisko { get; set; }
         public string PESEL { get; set; }
-        public ICollection<Wynajmy> Wynajmy { get; set; }
     }
 }
