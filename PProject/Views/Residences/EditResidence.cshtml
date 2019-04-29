@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Edit Residence";
 }
-<input value="@Model.BuildingId" id="residenceBuildingId" style="visibility: hidden">
+<input value="@Model.Building.id_budynku" id="residenceBuildingId" style="visibility: hidden">
 <input value="@Model.Items[0].id_mieszkania" id="residenceId" style="visibility: hidden">
 
 <div id="editInputs" class="container" style="float: left; width: 100%">
@@ -24,8 +24,8 @@
 </div>
 
 <div id="controlButtons" class="container" style="float: right">
-    <button onclick="onChangesConfirm(@Model.BuildingId)" type="button" class="btn btn-success">Confirm</button>
-    <button onclick="onCancel(@Model.BuildingId)" type="button" class="btn btn-light">Cancel</button>
+    <button onclick="onChangesConfirm(@Model.Building.id_budynku)" type="button" class="btn btn-success">Confirm</button>
+    <button onclick="onCancel(@Model.Building.id_budynku)" type="button" class="btn btn-light">Cancel</button>
 </div>
 
 <div class="modal fade" id="wrongInputModal" tabindex="-1" role="dialog" aria-labelledby="wrongInputLabel"

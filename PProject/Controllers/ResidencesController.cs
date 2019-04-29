@@ -38,11 +38,18 @@ namespace PProject.Controllers
         [HttpGet]
         public ActionResult GetBuildingDetails(int buildingId)
         {
-            var viewModel = new BuildingListViewModel(){Items = new List<ResidenceViewModel>()};
-            viewModel.BuildingId = buildingId;
+            var viewModel = new BuildingListViewModel()
+            {
+                Items = new List<ResidenceViewModel>(),
+                Building =  new BuildingViewModel()
+            };
+            viewModel.Building.id_budynku = buildingId;
 
             var result = residencesService.GetResidencesById(buildingId);
             result.ForEach(u=>viewModel.Items.Add(ViewModelMapper.Mapper.Map<ResidenceViewModel>(u)));
+
+            var buildingResult = residencesService.GetSingleBuilding(buildingId);
+            viewModel.Building.adres_budynku = buildingResult.adres_budynku;
 
             return View("BuildingDetails", viewModel);
         }
@@ -50,6 +57,12 @@ namespace PProject.Controllers
         public void DeleteResidence(int buildingId, int residenceId)
         {
             residencesService.RemoveResidence(buildingId, residenceId);
+        }
+
+        [HttpPost]
+        public void DeleteBuilding(int buildingId)
+        {
+            residencesService.RemoveBuilding(buildingId);
         }
         /// <summary>
         /// Returns residence edit form. Can serve both add and edit function. 
@@ -59,8 +72,12 @@ namespace PProject.Controllers
         /// <returns></returns>
         public ActionResult EditResidence(int buildingId, int? residenceId = null)
         {
-            var viewModel = new BuildingListViewModel(){Items = new List<ResidenceViewModel>()};
-            viewModel.BuildingId = buildingId;
+            var viewModel = new BuildingListViewModel()
+            {
+                Items = new List<ResidenceViewModel>(),
+                Building = new BuildingViewModel()
+            };
+            viewModel.Building.id_budynku = buildingId;
             if (residenceId != null)    //If the user edits existing residence - try to retrieve it so they can see its data.
             {
                 var result = residencesService.GetSingleResidence(buildingId, (int)residenceId);

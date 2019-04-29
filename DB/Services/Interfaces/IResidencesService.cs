@@ -36,6 +36,11 @@ namespace DB.Services.Interfaces
         /// <param name="residenceId"></param>
         void RemoveResidence(int buildingId, int residenceId);
         /// <summary>
+        /// Wipes out an empty (without any residences assigned) building from the database.
+        /// </summary>
+        /// <param name="buildingId"></param>
+        void RemoveBuilding(int buildingId);
+        /// <summary>
         /// Tries to update provided residence. If resembling row doesn't exist - adds it to the DB.
         /// </summary>
         /// <param name="newResidence"></param>

@@ -11,6 +11,6 @@ namespace PProject.Models.Residences
     /// </summary>
     public class BuildingListViewModel : ListViewModel<ResidenceViewModel>
     {
-        public int BuildingId { get; set; }
+        public BuildingViewModel Building { get; set; }
     }
 }

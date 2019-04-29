@@ -2,7 +2,13 @@
 @{
     ViewBag.Title = "Residents";
 }
-<h2>Residents</h2>
+
+<div id="header" class="container" style="width:100%">
+    <h2>Residents</h2>
+    <a href="@Url.Action("EditResident", "Residents")"><i class="fas fa-plus fa-3x hoverable green-text"></i></a>
+</div>
+
+
 <div id="tableContainer" class="container">
     <table id="residentsTable" class="table table-striped table-bordered" style="width:100%">
         <thead>

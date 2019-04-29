@@ -116,6 +116,27 @@ namespace DB.Services.Implementation
                 Console.WriteLine(ex.Message);
             }
         }
+
+        public void RemoveBuilding(int buildingId)
+        {
+            try
+            {
+                using (var ctx = new DBProjectEntities())
+                {
+                    var result = ctx.Budynki.Find(buildingId);
+                    if (result != null)
+                    {
+                        ctx.Budynki.Remove(result);
+                    }
+
+                    ctx.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
         
         public void AddOrEditResidence(ResidenceModel newResidence)
         {

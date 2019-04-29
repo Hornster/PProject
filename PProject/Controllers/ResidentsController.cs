@@ -41,5 +41,10 @@ namespace PProject.Controllers
 
 
         #endregion ActionMethods
+
+        public ActionResult EditResident(int residentId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
