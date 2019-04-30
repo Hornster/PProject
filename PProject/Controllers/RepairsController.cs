@@ -34,5 +34,10 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
+
+        public ActionResult GetRepairDetails()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

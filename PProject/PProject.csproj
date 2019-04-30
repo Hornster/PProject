@@ -180,6 +180,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
+    <Compile Include="Controllers\PaymentBillsController.cs" />
+    <Compile Include="Controllers\RentalController.cs" />
     <Compile Include="Controllers\RepairsController.cs" />
     <Compile Include="Controllers\ResidencesController.cs" />
     <Compile Include="Controllers\ResidentsController.cs" />
@@ -190,6 +193,8 @@
     <Compile Include="Mapper\ViewModelMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Rentals\RentalDataViewModel.cs" />
+    <Compile Include="Models\Rentals\StrictRentalDataViewModel.cs" />
     <Compile Include="Models\Residences\BuildingListViewModel.cs" />
     <Compile Include="Models\Residences\BuildingViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -420,6 +425,7 @@
     <Content Include="Views\Residences\EditResidence.cshtml" />
     <Content Include="Views\Residences\EditBuilding.cshtml" />
     <Content Include="Views\Residents\EditResident.cshtml" />
+    <Content Include="Views\Rental\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

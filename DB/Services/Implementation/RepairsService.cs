@@ -33,5 +33,50 @@ namespace DB.Services.Implementation
 
             return repairs;
         }
+
+        public List<FaultModel> GetFaultsById(int repairId)
+        {
+            var residences = new List<FaultModel>();
+            try
+            {
+                using (var ctx = new DBProjectEntities())
+                {
+                    //var queryResult = ctx.Usterki.Where(x => x. == buildingId).AsQueryable();
+                    //foreach (var building in queryResult)
+                    //{
+                    //    residences.Add(ModelMapper.Mapper.Map<FaultModel>(building));
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return residences;
+        }
+
+        public RepairModel GetSingleRepair(int repairId)
+        {
+            var repair = new RepairModel();
+            try
+            {
+                using (var ctx = new DBProjectEntities())
+                {
+                    var queryResult = ctx.Naprawy.Find(repairId);
+
+                    repair = ModelMapper.Mapper.Map<RepairModel>(queryResult);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return repair;
+        }
+
+
     }
 }

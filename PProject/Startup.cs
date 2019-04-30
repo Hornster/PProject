@@ -39,6 +39,8 @@ namespace PProject
             services.AddTransient(typeof(IResidencesService), s => new ResidencesService());
             //Add dependency injection for the repairs service.
             services.AddTransient(typeof(IRepairsService), s => new RepairsService());
+            //Add dependency injection for the rental service.
+            services.AddTransient(typeof(IRentalService), s => new RentalService());
 
             services.AddController(typeof(Startup).Assembly.GetExportedTypes()
                 .Where(t => !t.IsAbstract && !t.IsGenericTypeDefinition)
