@@ -52,6 +52,26 @@ namespace DB.Services.Implementation
             return queryResult;
         }
 
+        public ResidentModel GetSingleResident(string residentPesel)
+        {
+            ResidentModel queryResult = null;
+            try
+            {
+                using (var ctx = new DBProjectEntities())
+                {
+                    var resident = ctx.Najemcy.FirstOrDefault(x=>x.PESEL == residentPesel);
+
+                    queryResult = ModelMapper.Mapper.Map<ResidentModel>(resident);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return queryResult;
+        }
+
         public void AddOrEditResident(ResidentModel newResident)
         {
             try

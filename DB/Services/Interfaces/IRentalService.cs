@@ -12,13 +12,11 @@ namespace DB.Services.Interfaces
     {
         //RENTALS
         /// <summary>
-        /// Adds a new rental.
+        /// Adds a new rental. Make sure the najemca and mieszkanie IDs are not null or will fail.
         /// </summary>
-        /// <param name="residentId">Has to have value for the operation to succeed.</param>
-        /// <param name="residenceId">Has to have value for the operation to succeed.</param>
         /// <param name="newRentalData"></param>
         /// <returns>True if managed to add. False otherwise.</returns>
-        bool AddRental(int? residentId, int? residenceId, StrictRentalDataModel newRentalData);
+        bool AddRental(StrictRentalDataModel newRentalData);
         /// <summary>
         /// Edits an already present rental.
         /// </summary>

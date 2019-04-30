@@ -18,6 +18,12 @@ namespace DB.Services.Interfaces
         /// <returns></returns>
         ResidentModel GetSingleResident(int residentId);
         /// <summary>
+        /// Returns single resident saved under provided PESEL or null if none found.
+        /// </summary>
+        /// <param name="residentPesel"></param>
+        /// <returns></returns>
+        ResidentModel GetSingleResident(string residentPesel);
+        /// <summary>
         /// Edits or adds (if record not yet present) a resident.
         /// </summary>
         /// <param name="newResident">Data of the resident to edit/add.</param>
@@ -27,5 +33,6 @@ namespace DB.Services.Interfaces
         /// </summary>
         /// <param name="residentId"></param>
         void RemoveResident(int residentId);
+
     }
 }

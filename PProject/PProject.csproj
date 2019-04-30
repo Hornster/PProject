@@ -178,6 +178,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FaultsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentsController.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Rentals\RentalDataViewModel.cs" />
+    <Compile Include="Models\Rentals\RentalEditDataViewModel.cs" />
     <Compile Include="Models\Rentals\StrictRentalDataViewModel.cs" />
     <Compile Include="Models\Residences\BuildingListViewModel.cs" />
     <Compile Include="Models\Residences\BuildingViewModel.cs" />
@@ -426,6 +428,9 @@
     <Content Include="Views\Residences\EditBuilding.cshtml" />
     <Content Include="Views\Residents\EditResident.cshtml" />
     <Content Include="Views\Rental\Index.cshtml" />
+    <Content Include="Views\Faults\Index.cshtml" />
+    <Content Include="Views\Rental\AddRental.cshtml" />
+    <Content Include="Views\Rental\GetRentalDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

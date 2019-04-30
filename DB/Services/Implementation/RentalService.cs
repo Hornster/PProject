@@ -12,9 +12,9 @@ namespace DB.Services.Implementation
     public class RentalService : IRentalService
     {
         //RENTALS
-        public bool AddRental(int? residentId, int? residenceId, StrictRentalDataModel newRentalData)
+        public bool AddRental(StrictRentalDataModel newRentalData)
         {
-            if (residentId == null || residenceId == null)
+            if (newRentalData.id_najemcy == null || newRentalData.id_mieszkania == null)
             {
                 return false;       //We cannot setup the rental - leave.
             }
@@ -23,7 +23,7 @@ namespace DB.Services.Implementation
             {
                 using (var ctx = new DBProjectEntities())
                 {
-                    var rental = ctx.Wynajmy.FirstOrDefault(x => x.id_mieszkania == residenceId && x.id_najemcy == residentId);
+                    var rental = ctx.Wynajmy.FirstOrDefault(x => x.id_mieszkania == newRentalData.id_mieszkania && x.id_najemcy == newRentalData.id_najemcy);
                     if (rental == null)  //DB did not find any record like provided one. Add it.
                     {
                         rental = ModelMapper.Mapper.Map<Wynajmy>(newRentalData);

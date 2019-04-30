@@ -56,7 +56,7 @@ namespace DB.Services.Implementation
             return residences;
         }
 
-        public ResidenceModel GetSingleResidence(int buildingId, int residenceId)
+        public ResidenceModel GetSingleResidenceByID(int buildingId, int residenceId)
         {
             var residence = new ResidenceModel();
             try
@@ -76,6 +76,26 @@ namespace DB.Services.Implementation
             return residence;
         }
 
+        public ResidenceModel GetSingleResidenceByNumber(int buildingId, int residenceNumber)
+        {
+            var residence = new ResidenceModel();
+            try
+            {
+                using (var ctx = new DBProjectEntities())
+                {
+                    var queryResult = ctx.Mieszkania.FirstOrDefault(x => x.id_budynku == buildingId && x.numer == residenceNumber);
+
+                    residence = ModelMapper.Mapper.Map<ResidenceModel>(queryResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return residence;
+        }
+
         public BuildingModel GetSingleBuilding(int buildingId)
         {
             var building = new BuildingModel();
@@ -84,6 +104,26 @@ namespace DB.Services.Implementation
                 using (var ctx = new DBProjectEntities())
                 {
                     var queryResult = ctx.Budynki.Find(buildingId);
+
+                    building = ModelMapper.Mapper.Map<BuildingModel>(queryResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return building;
+        }
+
+        public BuildingModel GetSingleBuilding(string buildingAddress)
+        {
+            var building = new BuildingModel();
+            try
+            {
+                using (var ctx = new DBProjectEntities())
+                {
+                    var queryResult = ctx.Budynki.FirstOrDefault(x => x.adres_budynku == buildingAddress);
 
                     building = ModelMapper.Mapper.Map<BuildingModel>(queryResult);
                 }

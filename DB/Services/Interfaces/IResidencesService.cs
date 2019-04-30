@@ -22,13 +22,20 @@ namespace DB.Services.Interfaces
         /// <param name="buildingId"></param>
         /// <param name="residenceId"></param>
         /// <returns></returns>
-        ResidenceModel GetSingleResidence(int buildingId, int residenceId);
+        ResidenceModel GetSingleResidenceByID(int buildingId, int residenceId);
+        ResidenceModel GetSingleResidenceByNumber(int buildingId, int residenceNumber);
         /// <summary>
         /// Returns a single building, if found any. If not - returns null, most likely.
         /// </summary>
         /// <param name="buildingId"></param>
         /// <returns></returns>
         BuildingModel GetSingleBuilding(int buildingId);
+        /// <summary>
+        /// Returns a single building, if found any. If not - returns null, most likely.
+        /// </summary>
+        /// <param name="buildingAddress">Address of the building.</param>
+        /// <returns></returns>
+        BuildingModel GetSingleBuilding(string buildingAddress);
         /// <summary>
         /// Wipes out given residence from the database.
         /// </summary>

@@ -80,7 +80,7 @@ namespace PProject.Controllers
             viewModel.Building.id_budynku = buildingId;
             if (residenceId != null)    //If the user edits existing residence - try to retrieve it so they can see its data.
             {
-                var result = residencesService.GetSingleResidence(buildingId, (int)residenceId);
+                var result = residencesService.GetSingleResidenceByID(buildingId, (int)residenceId);
                 var residence = ViewModelMapper.Mapper.Map<ResidenceViewModel>(result);
                 viewModel.Items.Add(residence);
             }
