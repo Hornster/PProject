@@ -45,13 +45,26 @@ namespace PProject.Controllers
 
         public ActionResult AddRental()
         {
-            return View();
+            var viewModel = new RentalEditDataViewModel(){RentalId = -1};   //
+            return View("EditRental", viewModel);
         }
 
-        public ActionResult GetRentalDetails(int rentalId)
+        public ActionResult EditRental(int rentalId)
         {
             var queryResult = rentalService.GetSingleRentalDataModel(rentalId);
-            var viewModel = ViewModelMapper.Mapper.Map<RentalDataViewModel>(queryResult);
+            var assignedResident = residentService.GetSingleResident(queryResult.id_najemcy);
+            var assignedResidence =
+                residencesService.GetSingleResidenceByID(queryResult.id_budynku, queryResult.id_mieszkania);
+            var viewModel = new RentalEditDataViewModel()
+            {
+                RentalId = rentalId,
+                BuildingAddress = queryResult.adres_budynku,
+                ExpiringDate = queryResult.data_zakonczenia,
+                PESEL = assignedResident.PESEL,
+                RentalPrice = queryResult.cena_miesieczna,
+                ResidenceNumber = assignedResidence.numer,
+                StartDate = queryResult.data_rozpoczecia
+            };
 
             return View(viewModel);
         }
@@ -61,31 +74,13 @@ namespace PProject.Controllers
             rentalService.RemoveRental(rentalId);
         }
 
-        public void ConfirmRentalAdd(string residentPESEL, string buildingAddress,
-            int residenceNumber, DateTime? startDate, DateTime? expiringDate, float? rentalPrice)
-        {
-            var residentId = residentService.GetSingleResident(residentPESEL).id_najemcy;
-            var building = residencesService.GetSingleBuilding(buildingAddress);
-            var residenceId = residencesService.GetSingleResidenceByID(building.id_budynku, residenceNumber).id_mieszkania;
-
-            var newRental = new StrictRentalDataViewModel()
-            {
-                cena_miesieczna = rentalPrice,
-                data_rozpoczecia =  startDate,
-                data_zakonczenia = expiringDate,
-                id_mieszkania = residenceId,
-                id_najemcy = residentId
-            };
-
-            rentalService.AddRental(ViewModelMapper.Mapper.Map<StrictRentalDataModel>(newRental));
-        }
-
+        
         public void ConfirmRentalEdit(int rentalId, string residentPESEL, string buildingAddress,
             int residenceNumber, DateTime? startDate, DateTime? expiringDate, float? rentalPrice)
         {
             var residentId = residentService.GetSingleResident(residentPESEL).id_najemcy;
             var building = residencesService.GetSingleBuilding(buildingAddress);
-            var residenceId = residencesService.GetSingleResidenceByID(building.id_budynku, residenceNumber).id_mieszkania;
+            var residenceId = residencesService.GetSingleResidenceByNumber(building.id_budynku, residenceNumber).id_mieszkania;
 
             var newRental = new StrictRentalDataViewModel()
             {
@@ -96,7 +91,7 @@ namespace PProject.Controllers
                 id_najemcy = residentId,
                 id_wynajmu = rentalId
             };
-            rentalService.EditRental(ViewModelMapper.Mapper.Map<StrictRentalDataModel>(newRental));
+            rentalService.AddOrEditRental(ViewModelMapper.Mapper.Map<StrictRentalDataModel>(newRental));
         }
     }
 }

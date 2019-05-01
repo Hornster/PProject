@@ -138,8 +138,6 @@ warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a prim
             <PropertyRef Name="id_budynku" />
             <PropertyRef Name="id_mieszkania" />
             <PropertyRef Name="id_wynajmu" />
-            <PropertyRef Name="id_platnosci" />
-            <PropertyRef Name="id_faktury" />
           </Key>
           <Property Name="imie" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="nazwisko" Type="varchar" MaxLength="20" Nullable="false" />
@@ -151,8 +149,7 @@ warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a prim
           <Property Name="id_budynku" Type="int" Nullable="false" />
           <Property Name="id_mieszkania" Type="int" Nullable="false" />
           <Property Name="id_wynajmu" Type="int" Nullable="false" />
-          <Property Name="id_platnosci" Type="int" Nullable="false" />
-          <Property Name="id_faktury" Type="int" Nullable="false" />
+          <Property Name="cena_miesieczna" Type="real" />
         </EntityType>
         <Association Name="FK__FakturyNa__id_na__24927208">
           <End Role="Naprawy" Type="Self.Naprawy" Multiplicity="0..1" />
@@ -312,8 +309,7 @@ warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a prim
     [RentalDataView].[id_budynku] AS [id_budynku], 
     [RentalDataView].[id_mieszkania] AS [id_mieszkania], 
     [RentalDataView].[id_wynajmu] AS [id_wynajmu], 
-    [RentalDataView].[id_platnosci] AS [id_platnosci], 
-    [RentalDataView].[id_faktury] AS [id_faktury]
+    [RentalDataView].[cena_miesieczna] AS [cena_miesieczna]
     FROM [dbo].[RentalDataView] AS [RentalDataView]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__FakturyNa__id_na__24927208" Association="Self.FK__FakturyNa__id_na__24927208">
@@ -710,8 +706,6 @@ warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a prim
             <PropertyRef Name="id_budynku" />
             <PropertyRef Name="id_mieszkania" />
             <PropertyRef Name="id_wynajmu" />
-            <PropertyRef Name="id_platnosci" />
-            <PropertyRef Name="id_faktury" />
           </Key>
           <Property Name="imie" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="nazwisko" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -723,8 +717,7 @@ warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a prim
           <Property Name="id_budynku" Type="Int32" Nullable="false" />
           <Property Name="id_mieszkania" Type="Int32" Nullable="false" />
           <Property Name="id_wynajmu" Type="Int32" Nullable="false" />
-          <Property Name="id_platnosci" Type="Int32" Nullable="false" />
-          <Property Name="id_faktury" Type="Int32" Nullable="false" />
+          <Property Name="cena_miesieczna" Type="Single" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -869,8 +862,7 @@ warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a prim
           <EntitySetMapping Name="RentalDataView">
             <EntityTypeMapping TypeName="DBProjectModel.RentalDataView">
               <MappingFragment StoreEntitySet="RentalDataView">
-                <ScalarProperty Name="id_faktury" ColumnName="id_faktury" />
-                <ScalarProperty Name="id_platnosci" ColumnName="id_platnosci" />
+                <ScalarProperty Name="cena_miesieczna" ColumnName="cena_miesieczna" />
                 <ScalarProperty Name="id_wynajmu" ColumnName="id_wynajmu" />
                 <ScalarProperty Name="id_mieszkania" ColumnName="id_mieszkania" />
                 <ScalarProperty Name="id_budynku" ColumnName="id_budynku" />

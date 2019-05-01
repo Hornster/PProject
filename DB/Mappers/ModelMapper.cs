@@ -44,6 +44,30 @@ namespace DB.Mappers
                 .ForMember(dest => dest.FakturyNapraw, dest => dest.Ignore())
                 .ForMember(dest => dest.Firmy, dest => dest.Ignore())
                 .ForMember(dest => dest.StanyNapraw, dest => dest.Ignore());
+
+            //Rentals
+            cfg.CreateMap<StrictRentalDataModel, Wynajmy>()
+                .ForMember(dest => dest.FakturyWynajem, dest => dest.Ignore())
+                .ForMember(dest => dest.Mieszkania, dest => dest.Ignore())
+                .ForMember(dest => dest.Najemcy, dest => dest.Ignore())
+                .ForMember(dest => dest.Platnosci, dest => dest.Ignore());
+            cfg.CreateMap<Wynajmy, StrictRentalDataModel>()
+                .ForSourceMember(src => src.FakturyWynajem, src => src.DoNotValidate())
+                .ForSourceMember(src => src.Mieszkania, src => src.DoNotValidate())
+                .ForSourceMember(src => src.Najemcy, src => src.DoNotValidate())
+                .ForSourceMember(src => src.Platnosci, src => src.DoNotValidate());
+
+            //Payments
+            cfg.CreateMap<PaymentModel, Platnosci>()
+                .ForMember(dest => dest.Wynajmy, dest => dest.Ignore());
+            cfg.CreateMap<Platnosci, PaymentModel>()
+                .ForSourceMember(src => src.Wynajmy, src => src.DoNotValidate());
+
+            //Payment Bills
+            cfg.CreateMap<PaymentBillModel, FakturyWynajem>()
+                .ForMember(dest => dest.Wynajmy, dest => dest.Ignore());
+            cfg.CreateMap<FakturyWynajem, PaymentBillModel>()
+                .ForSourceMember(src => src.Wynajmy, src => src.DoNotValidate());
         }).CreateMapper();
 
     }

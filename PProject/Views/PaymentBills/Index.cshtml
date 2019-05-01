@@ -1,0 +1,67 @@
+﻿@model PProject.Models.PaymentBills.PaymentBillListViewModel
+@{
+    ViewBag.Title = "Payment Bills";
+}
+
+
+<div id="header" class="container" style="width:100%">
+    <h2>@ViewBag.Title for Rental number @Model.RentalId</h2>
+    <a href="@Url.Action("AddPaymentBill", "PaymentBills")?rentalId=@Model.RentalId"><i class="fas fa-plus fa-3x hoverable green-text"></i></a>
+</div>
+<div id="tableContainer" class="container">
+    <table id="paymentBillsTable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th class="col-sm-1"></th> <!--editing control-->
+                <th class="col-sm-1"></th><!--removing control-->
+                <th scope="col">Bill Number</th>
+                <th scope="col">Payment Value</th>
+                <th scope="col">Date</th>
+                @*Iterate each element in model for given row in table.*@
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model?.Items?.Count > 0)
+            {
+                foreach (var payment in Model.Items)
+                {
+                    <tr>
+                        <td><a href="@Url.Action("EditPaymentBill", "PaymentBills")?paymentBillId=@payment.id_faktury"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
+                        <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@payment.id_faktury)"></i></td>
+                        <td>@payment.numer_faktury</td>
+                        <td>@payment.cena</td>
+                        <td>@payment.data_platnosci</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" style="text-align: center">No items to display.</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    ///Initializes the table.
+    $(document).ready(function () {
+        var table = $('#paymentBillsTable').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+
+    //Removes given payment from rental.
+    function deleteRecord(paymentBillId) {
+        $.post("@Url.Action("DeletePaymentBill", "PaymentBills")",
+            {
+                paymentBillId: paymentBillId
+            }).then(function() {
+            window.location.href = window.location.href;
+        });
+    }
+
+</script>
+
+

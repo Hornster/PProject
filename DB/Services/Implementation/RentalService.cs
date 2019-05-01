@@ -12,40 +12,7 @@ namespace DB.Services.Implementation
     public class RentalService : IRentalService
     {
         //RENTALS
-        public bool AddRental(StrictRentalDataModel newRentalData)
-        {
-            if (newRentalData.id_najemcy == null || newRentalData.id_mieszkania == null)
-            {
-                return false;       //We cannot setup the rental - leave.
-            }
-
-            try
-            {
-                using (var ctx = new DBProjectEntities())
-                {
-                    var rental = ctx.Wynajmy.FirstOrDefault(x => x.id_mieszkania == newRentalData.id_mieszkania && x.id_najemcy == newRentalData.id_najemcy);
-                    if (rental == null)  //DB did not find any record like provided one. Add it.
-                    {
-                        rental = ModelMapper.Mapper.Map<Wynajmy>(newRentalData);
-                        ctx.Wynajmy.Add(rental);
-                    }
-                    else
-                    {
-                        return false;       //There's already a rental of this residence for this resident. 
-                    }
-                    ctx.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-
-            return true;
-        }
-
-        public bool EditRental(StrictRentalDataModel newRentalData)
+        public bool AddOrEditRental(StrictRentalDataModel newRentalData)
         {
             if (newRentalData.id_najemcy == null || newRentalData.id_mieszkania == null)
             {
@@ -60,14 +27,17 @@ namespace DB.Services.Implementation
 
                     if (rental == null)
                     {
-                        return false;
+                        rental = ModelMapper.Mapper.Map<Wynajmy>(newRentalData);
+                        ctx.Wynajmy.Add(rental);
                     }
-
-                    rental.id_najemcy = newRentalData.id_najemcy;
-                    rental.id_mieszkania = newRentalData.id_mieszkania;
-                    rental.cena_miesieczna = newRentalData.cena_miesieczna;
-                    rental.data_rozpoczecia = newRentalData.data_rozpoczecia;
-                    rental.data_zakonczenia = newRentalData.data_zakonczenia;
+                    else
+                    {
+                        rental.id_najemcy = newRentalData.id_najemcy;
+                        rental.id_mieszkania = newRentalData.id_mieszkania;
+                        rental.cena_miesieczna = newRentalData.cena_miesieczna;
+                        rental.data_rozpoczecia = newRentalData.data_rozpoczecia;
+                        rental.data_zakonczenia = newRentalData.data_zakonczenia;
+                    }
                     
                     ctx.SaveChanges();
                 }

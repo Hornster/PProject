@@ -18,11 +18,10 @@ namespace DB.Model.Interfaces
         string adres_budynku { get; set; }
         DateTime? data_rozpoczecia { get; set; }
         DateTime? data_zakonczenia { get; set; }
+        float? cena_miesieczna { get; set; }
         int id_najemcy { get; set; }
         int id_budynku { get; set; }
         int id_mieszkania { get; set; }
         int id_wynajmu { get; set; }
-        int id_platnosci { get; set; }
-        int id_faktury { get; set; }
     }
 }

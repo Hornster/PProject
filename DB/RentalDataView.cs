@@ -24,7 +24,6 @@ namespace DB
         public int id_budynku { get; set; }
         public int id_mieszkania { get; set; }
         public int id_wynajmu { get; set; }
-        public int id_platnosci { get; set; }
-        public int id_faktury { get; set; }
+        public Nullable<float> cena_miesieczna { get; set; }
     }
 }

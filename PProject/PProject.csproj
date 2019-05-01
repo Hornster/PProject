@@ -181,8 +181,8 @@
     <Compile Include="Controllers\FaultsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\PaymentBillsController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\RentalController.cs" />
     <Compile Include="Controllers\RepairsController.cs" />
     <Compile Include="Controllers\ResidencesController.cs" />
@@ -194,6 +194,10 @@
     <Compile Include="Mapper\ViewModelMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\PaymentBills\PaymentBillListViewModel.cs" />
+    <Compile Include="Models\PaymentBills\PaymentBillViewModel.cs" />
+    <Compile Include="Models\Payments\PaymentListViewModel.cs" />
+    <Compile Include="Models\Payments\PaymentViewModel.cs" />
     <Compile Include="Models\Rentals\RentalDataViewModel.cs" />
     <Compile Include="Models\Rentals\RentalEditDataViewModel.cs" />
     <Compile Include="Models\Rentals\StrictRentalDataViewModel.cs" />
@@ -429,8 +433,11 @@
     <Content Include="Views\Residents\EditResident.cshtml" />
     <Content Include="Views\Rental\Index.cshtml" />
     <Content Include="Views\Faults\Index.cshtml" />
-    <Content Include="Views\Rental\AddRental.cshtml" />
-    <Content Include="Views\Rental\GetRentalDetails.cshtml" />
+    <Content Include="Views\Rental\EditRental.cshtml" />
+    <Content Include="Views\Payments\Index.cshtml" />
+    <Content Include="Views\Payments\EditPayment.cshtml" />
+    <Content Include="Views\PaymentBills\Index.cshtml" />
+    <Content Include="Views\PaymentBills\EditPaymentBill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

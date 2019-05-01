@@ -20,6 +20,7 @@
                 <th scope="col">Building Address</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">Expiring Date</th>
+                <th scope="col" class="col-sm-1">Monthly Price</th>
                 <th scope="col" class="col-sm-1"></th> <!--payments link control-->
                 <th scope="col" class="col-sm-1"></th> <!--payment bills link control-->
                 @*Iterate each element in model for given row in table.*@
@@ -31,7 +32,7 @@
             foreach (var rental in Model.Items)
             {
             <tr>
-                <td><a href="@Url.Action("GetRentalDetails", "Rental")?rentalId=@rental.id_wynajmu"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
+                <td><a href="@Url.Action("EditRental", "Rental")?rentalId=@rental.id_wynajmu"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
                 <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@rental.id_wynajmu)"></i></td>
                 <td>@rental.imie</td>
                 <td>@rental.nazwisko</td>
@@ -39,6 +40,7 @@
                 <td>@rental.adres_budynku</td>
                 <td>@rental.data_rozpoczecia</td>
                 <td>@rental.data_zakonczenia</td>
+                <td>@rental.cena_miesieczna</td>
                 <td><a href="@Url.Action("Index", "Payments")?rentalId=@rental.id_wynajmu"><i class="fas fa-coins mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
                 <td><a href="@Url.Action("Index", "PaymentBills")?rentalId=@rental.id_wynajmu"><i class="fas fa-book-open mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
             </tr>
@@ -47,7 +49,7 @@
         else
         {
             <tr>
-                <td colspan="10" style="text-align: center">No items to display.</td>
+                <td colspan="11" style="text-align: center">No items to display.</td>
             </tr>
         }
 

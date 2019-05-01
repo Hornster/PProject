@@ -12,17 +12,11 @@ namespace DB.Services.Interfaces
     {
         //RENTALS
         /// <summary>
-        /// Adds a new rental. Make sure the najemca and mieszkanie IDs are not null or will fail.
+        /// Tries to edit, or adds if unable to find, a rental. Make sure the najemca and mieszkanie IDs are not null or will fail.
         /// </summary>
         /// <param name="newRentalData"></param>
         /// <returns>True if managed to add. False otherwise.</returns>
-        bool AddRental(StrictRentalDataModel newRentalData);
-        /// <summary>
-        /// Edits an already present rental.
-        /// </summary>
-        /// <param name="newRentalData">Data of new rental, make sure it has the rental ID.</param>
-        /// <returns>True if managed to edit. False otherwise.</returns>
-        bool EditRental(StrictRentalDataModel newRentalData);
+        bool AddOrEditRental(StrictRentalDataModel newRentalData);
         /// <summary>
         /// Returns a single rental data model.Has all data required to show to the user. Or null if none found.
         /// </summary>

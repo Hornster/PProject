@@ -6,6 +6,8 @@ using AutoMapper;
 using DB.Model;
 using DB.Model.Implementation;
 using PProject.Models;
+using PProject.Models.PaymentBills;
+using PProject.Models.Payments;
 using PProject.Models.Repairs;
 using PProject.Models.Residences;
 using PProject.Models.Residents;
@@ -27,6 +29,14 @@ namespace PProject.Mapper
                 //Repairs table
                 cfg.CreateMap<RepairModel, RepairViewModel>();
                 cfg.CreateMap<RepairViewModel, RepairModel>();
+
+                //Payments
+                cfg.CreateMap<PaymentModel, PaymentViewModel>();
+                cfg.CreateMap<PaymentViewModel, PaymentModel>();
+
+                //Payment Bills
+                cfg.CreateMap<PaymentBillModel, PaymentBillViewModel>();
+                cfg.CreateMap<PaymentBillViewModel, PaymentBillModel>();
             }).CreateMapper();
 
     }
