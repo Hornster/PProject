@@ -86,22 +86,29 @@
     <Compile Include="FakturyWynajem.cs">
       <DependentUpon>BDProject.tt</DependentUpon>
     </Compile>
+    <Compile Include="FaultsDataView.cs">
+      <DependentUpon>BDProject.tt</DependentUpon>
+    </Compile>
     <Compile Include="Firmy.cs">
       <DependentUpon>BDProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Implementation\BuildingModel.cs" />
+    <Compile Include="Model\Implementation\FaultDataModel.cs" />
     <Compile Include="Model\Implementation\FaultModel.cs" />
     <Compile Include="Model\Implementation\PaymentBillModel.cs" />
     <Compile Include="Model\Implementation\PaymentModel.cs" />
     <Compile Include="Model\Implementation\RentalDataModel.cs" />
+    <Compile Include="Model\Implementation\RepairBillModel.cs" />
     <Compile Include="Model\Implementation\StrictRentalDataModel.cs" />
     <Compile Include="Model\Interfaces\IFaultModel.cs" />
     <Compile Include="Model\Implementation\ResidenceModel.cs" />
     <Compile Include="Model\Implementation\ResidentModel.cs" />
     <Compile Include="Model\Interfaces\IBuildingModel.cs" />
+    <Compile Include="Model\Interfaces\IFaultsDataModel.cs" />
     <Compile Include="Model\Interfaces\IPaymentBillModel.cs" />
     <Compile Include="Model\Interfaces\IPaymentModel.cs" />
     <Compile Include="Model\Interfaces\IRentalDataModel.cs" />
+    <Compile Include="Model\Interfaces\IRepairBillModel.cs" />
     <Compile Include="Model\Interfaces\IRepairModel.cs" />
     <Compile Include="Model\Interfaces\IResidenceModel.cs" />
     <Compile Include="Model\Implementation\RepairModel.cs" />
@@ -109,16 +116,20 @@
     <Compile Include="RentalDataView.cs">
       <DependentUpon>BDProject.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\Implementation\FaultService.cs" />
     <Compile Include="Services\Implementation\PaymentBillService.cs" />
     <Compile Include="Services\Implementation\PaymentService.cs" />
     <Compile Include="Services\Implementation\RentalService.cs" />
+    <Compile Include="Services\Implementation\RepairBillService.cs" />
     <Compile Include="Services\Implementation\RepairsService.cs" />
     <Compile Include="Services\Implementation\ResidencesService.cs" />
     <Compile Include="Services\Implementation\ResidentsService.cs" />
     <Compile Include="Model\Interfaces\IResidentModel.cs" />
+    <Compile Include="Services\Interfaces\IFaultService.cs" />
     <Compile Include="Services\Interfaces\IPaymentBillService.cs" />
     <Compile Include="Services\Interfaces\IPaymentService.cs" />
     <Compile Include="Services\Interfaces\IRentalService.cs" />
+    <Compile Include="Services\Interfaces\IRepairBillService.cs" />
     <Compile Include="Services\Interfaces\IRepairsService.cs" />
     <Compile Include="Services\Interfaces\IResidencesService.cs" />
     <Compile Include="Services\Interfaces\IResidentsService.cs" />

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8f569714addc43f2a3ef195e909733b3" Name="Diagram1" ZoomLevel="108">
+      <Diagram DiagramId="8f569714addc43f2a3ef195e909733b3" Name="Diagram1" ZoomLevel="69">
         <EntityTypeShape EntityType="DBProjectModel.Budynki" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="DBProjectModel.Dozorcy" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBProjectModel.FakturyNapraw" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
@@ -30,6 +30,7 @@
         <AssociationConnector Association="DBProjectModel.FK__Platnosci__id_wy__398D8EEE" ManuallyRouted="false" />
         <AssociationConnector Association="DBProjectModel.FK__Usterki__stan__1A14E395" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DBProjectModel.RentalDataView" Width="1.5" PointX="3.375" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBProjectModel.FaultsDataView" Width="1.5" PointX="10.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

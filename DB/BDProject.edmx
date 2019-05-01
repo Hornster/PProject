@@ -65,7 +65,7 @@
           <Key>
             <PropertyRef Name="id_najemcy" />
           </Key>
-          <Property Name="id_najemcy" Type="int" Nullable="false" />
+          <Property Name="id_najemcy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nr_telefonu" Type="varchar" MaxLength="12" />
           <Property Name="imie" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="nazwisko" Type="varchar" MaxLength="20" Nullable="false" />
@@ -125,6 +125,24 @@
           <Property Name="data_zakonczenia" Type="datetime" />
           <Property Name="id_najemcy" Type="int" />
           <Property Name="cena_miesieczna" Type="real" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DBProject.dbo.FaultsDataView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FaultsDataView">
+          <Key>
+            <PropertyRef Name="adres_budynku" />
+            <PropertyRef Name="numer" />
+            <PropertyRef Name="id_usterki" />
+            <PropertyRef Name="id_mieszkania" />
+            <PropertyRef Name="id_budynku" />
+          </Key>
+          <Property Name="opis" Type="varchar" MaxLength="500" />
+          <Property Name="stan" Type="varchar" MaxLength="30" />
+          <Property Name="adres_budynku" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="numer" Type="int" Nullable="false" />
+          <Property Name="id_usterki" Type="int" Nullable="false" />
+          <Property Name="id_mieszkania" Type="int" Nullable="false" />
+          <Property Name="id_budynku" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -297,6 +315,17 @@ warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a prim
           <EntitySet Name="StanyUsterek" EntityType="Self.StanyUsterek" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usterki" EntityType="Self.Usterki" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wynajmy" EntityType="Self.Wynajmy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FaultsDataView" EntityType="Self.FaultsDataView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FaultsDataView].[opis] AS [opis], 
+    [FaultsDataView].[stan] AS [stan], 
+    [FaultsDataView].[adres_budynku] AS [adres_budynku], 
+    [FaultsDataView].[numer] AS [numer], 
+    [FaultsDataView].[id_usterki] AS [id_usterki], 
+    [FaultsDataView].[id_mieszkania] AS [id_mieszkania], 
+    [FaultsDataView].[id_budynku] AS [id_budynku]
+    FROM [dbo].[FaultsDataView] AS [FaultsDataView]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="RentalDataView" EntityType="Self.RentalDataView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [RentalDataView].[imie] AS [imie], 
@@ -695,6 +724,7 @@ warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a prim
             <End Role="Usterki" EntitySet="Usterki" />
           </AssociationSet>
           <EntitySet Name="RentalDataView" EntityType="DBProjectModel.RentalDataView" />
+          <EntitySet Name="FaultsDataView" EntityType="DBProjectModel.FaultsDataView" />
         </EntityContainer>
         <EntityType Name="RentalDataView">
           <Key>
@@ -718,6 +748,22 @@ warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a prim
           <Property Name="id_mieszkania" Type="Int32" Nullable="false" />
           <Property Name="id_wynajmu" Type="Int32" Nullable="false" />
           <Property Name="cena_miesieczna" Type="Single" />
+        </EntityType>
+        <EntityType Name="FaultsDataView">
+          <Key>
+            <PropertyRef Name="adres_budynku" />
+            <PropertyRef Name="numer" />
+            <PropertyRef Name="id_usterki" />
+            <PropertyRef Name="id_mieszkania" />
+            <PropertyRef Name="id_budynku" />
+          </Key>
+          <Property Name="opis" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="stan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="adres_budynku" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="numer" Type="Int32" Nullable="false" />
+          <Property Name="id_usterki" Type="Int32" Nullable="false" />
+          <Property Name="id_mieszkania" Type="Int32" Nullable="false" />
+          <Property Name="id_budynku" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -873,6 +919,19 @@ warning 6002: The table/view 'DBProject.dbo.RentalDataView' does not have a prim
                 <ScalarProperty Name="numer" ColumnName="numer" />
                 <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
                 <ScalarProperty Name="imie" ColumnName="imie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FaultsDataView">
+            <EntityTypeMapping TypeName="DBProjectModel.FaultsDataView">
+              <MappingFragment StoreEntitySet="FaultsDataView">
+                <ScalarProperty Name="id_budynku" ColumnName="id_budynku" />
+                <ScalarProperty Name="id_mieszkania" ColumnName="id_mieszkania" />
+                <ScalarProperty Name="id_usterki" ColumnName="id_usterki" />
+                <ScalarProperty Name="numer" ColumnName="numer" />
+                <ScalarProperty Name="adres_budynku" ColumnName="adres_budynku" />
+                <ScalarProperty Name="stan" ColumnName="stan" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

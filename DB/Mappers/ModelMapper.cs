@@ -33,7 +33,7 @@ namespace DB.Mappers
                 .ForMember(dest=>dest.Wynajmy, dest=>dest.Ignore())
                 .ForMember(dest=>dest.Usterki, dest=>dest.Ignore());
 
-            //Repairs
+            //Repairs, Faults
             cfg.CreateMap<Naprawy, RepairModel>()
                 .ForSourceMember(src=>src.FakturyNapraw, src=>src.DoNotValidate())
                 .ForSourceMember(src=>src.FakturyNapraw, src=>src.DoNotValidate())
@@ -44,6 +44,18 @@ namespace DB.Mappers
                 .ForMember(dest => dest.FakturyNapraw, dest => dest.Ignore())
                 .ForMember(dest => dest.Firmy, dest => dest.Ignore())
                 .ForMember(dest => dest.StanyNapraw, dest => dest.Ignore());
+            cfg.CreateMap<Usterki, FaultModel>()
+                .ForSourceMember(src => src.Mieszkania, src => src.DoNotValidate())
+                .ForSourceMember(src => src.Naprawy, src => src.DoNotValidate())
+                .ForSourceMember(src => src.StanyUsterek, src => src.DoNotValidate());
+            cfg.CreateMap<FaultModel, Usterki>()
+                .ForMember(dest => dest.Mieszkania, dest => dest.Ignore())
+                .ForMember(dest => dest.Naprawy, dest => dest.Ignore())
+                .ForMember(dest => dest.StanyUsterek, dest => dest.Ignore());
+            cfg.CreateMap<FakturyNapraw, RepairBillModel>()
+                .ForSourceMember(src => src.Naprawy, src => src.DoNotValidate());
+            cfg.CreateMap<RepairBillModel, FakturyNapraw>()
+                .ForMember(dest => dest.Naprawy, dest => dest.Ignore());
 
             //Rentals
             cfg.CreateMap<StrictRentalDataModel, Wynajmy>()

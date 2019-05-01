@@ -39,5 +39,6 @@ namespace DB
         public virtual DbSet<Usterki> Usterki { get; set; }
         public virtual DbSet<Wynajmy> Wynajmy { get; set; }
         public virtual DbSet<RentalDataView> RentalDataView { get; set; }
+        public virtual DbSet<FaultsDataView> FaultsDataView { get; set; }
     }
 }

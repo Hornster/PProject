@@ -14,9 +14,27 @@ namespace DB.Services.Interfaces
     public interface IRepairsService
     {
         /// <summary>
-        /// Gets all repairs from the database.
+        /// Edits, or adds if none found, a repair model.
         /// </summary>
+        /// <param name="newRepair"></param>
         /// <returns></returns>
-        List<RepairModel> GetAllRepairs();
+        bool AddOrEditRepair(RepairModel newRepair);
+        /// <summary>
+        /// If found, returns a single repair model, using its ID to find it.
+        /// </summary>
+        /// <param name="repairId"></param>
+        /// <returns></returns>
+        RepairModel GetSingleRepairModel(int repairId);
+        /// <summary>
+        /// Gets all repairs assigned to fault of given ID.
+        /// </summary>
+        /// <param name="faultId"></param>
+        /// <returns></returns>
+        List<RepairModel> GetAllRepairsById(int faultId);
+        /// <summary>
+        /// Removes a repair from system.
+        /// </summary>
+        /// <param name="repairId"></param>
+        void RemoveRepair(int repairId);
     }
 }
