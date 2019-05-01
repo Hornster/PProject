@@ -1,7 +1,67 @@
-﻿
+﻿@model PProject.Models.ListViewModel<PProject.Models.Faults.FaultDataViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Faults";
 }
 
-<h2>Faults</h2>
+<div id="header" class="container" style="width:100%">
+    <h2>@ViewBag.Title</h2>
+    <a href="@Url.Action("AddFault", "Faults")"><i class="fas fa-plus fa-3x hoverable green-text"></i></a>
+</div>
+<div id="tableContainer" class="container">
+    <table id="faultsTable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col" class="col-sm-1"></th> <!--editing control-->
+                <th scope="col" class="col-sm-1"></th> <!--removing control-->
+                <th scope="col" class="col-md-1">Building Address</th>
+                <th scope="col" class="col-sm-1">Residence Number</th>
+                <th scope="col" class="col-md-1">State</th>
+                <th scope="col">Description</th>
+                <th scope="col" class="col-sm-1"></th> <!--repairs link control-->
+                @*Iterate each element in model for given row in table.*@
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model?.Items?.Count > 0)
+            {
+                foreach (var fault in Model.Items)
+                {
+                <tr>
+                    <td><a href="@Url.Action("EditFault", "Faults")?faultId=@fault.id_usterki"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
+                    <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@fault.id_usterki)"></i></td>
+                    <td>@fault.adres_budynku</td>
+                    <td>@fault.numer</td>
+                    <td>@fault.stan</td>
+                    <td>@fault.opis</td>
+                    <td><a href="@Url.Action("Index", "Repairs")?faultId=@fault.id_usterki"><i class="fas fa-tools mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
+                </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="11" style="text-align: center">No items to display.</td>
+                </tr>
+            }
 
+        </tbody>
+    </table>
+</div>
+
+<script>
+    ///Initializes the table.
+    $(document).ready(function () {
+        var table = $('#faultsTable').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+    //Removes given residence from building.
+    function deleteRecord(faultId) {
+        $.post("@Url.Action("DeleteFault", "Faults")",
+            {
+                faultId: faultId
+            }).then(function() {
+            window.location.href = window.location.href;
+        });
+    }
+
+</script>

@@ -1,0 +1,155 @@
+﻿@model PProject.Models.Repairs.RepairEditViewModel
+@{
+    ViewBag.Title = "Edit Repair";
+}
+
+<h2>EditRepair</h2>
+
+<input value="@Model.Repair.id_usterki" id="faultId" style="visibility: hidden">
+<input value="@Model.Repair.id_naprawy" id="repairId" style="visibility: hidden">
+
+<div id="editInputs" class="container" style="float: left; width: 100%">
+    <div class="jumbotron">
+        <h2>@ViewBag.Title</h2>
+        <div id="repairState" class="md-form">
+            <input value="@Model.Repair.stan" type="text" id="repairStateInput" class="form-control">
+            <label for="repairStateInput">Current Repair State</label>
+        </div>
+        <div id="commissionDate" class="md-form">
+            <input value="@Model.Repair.data_zlecenia.ToString()" type="text" id="commissionDateInput" class="form-control"
+                   data-toggle="popover" data-trigger="focus" title="Wrong format" data-placement="Right" data-content="Date format incorrect. Try: yyyy-mm-dd hh:mm:ss.">
+            <label for="commissionDateInput">Commission Date</label>
+        </div>
+        <div id="startDate" class="md-form">
+            <input value="@Model.Repair.data_rozpoczecia.ToString()" type="text" id="startDateInput" class="form-control"
+                   data-toggle="popover" data-trigger="focus" title="Wrong format" data-placement="Right" data-content="Date format incorrect. Try: yyyy-mm-dd hh:mm:ss.">
+            <label for="startDateInput">Start Date</label>
+        </div>
+        <div id="finishDate" class="md-form">
+            <input value="@Model.Repair.data_ukonczenia.ToString()" type="text" id="finishDateInput" class="form-control"
+                   data-toggle="popover" data-trigger="focus" title="Wrong format" data-placement="Right" data-content="Date format incorrect. Try: yyyy-mm-dd hh:mm:ss.">
+            <label for="finishDateInput">Finish Date</label>
+        </div>
+        <div id="companyNip" class="md-form">
+            <input value="@Model.CommissionedCompany.NIP" type="text" id="companyNipInput" class="form-control">
+            <label for="companyNipInput">Company NIP</label>
+        </div>
+    </div>
+</div>
+
+<div id="controlButtons" class="container" style="float: right">
+    <button onclick="onChangesConfirm()" type="button" class="btn btn-success">Confirm</button>
+    <button onclick="onCancel()" type="button" class="btn btn-light">Cancel</button>
+</div>
+
+<div class="modal fade" id="wrongInputModal" tabindex="-1" role="dialog" aria-labelledby="wrongInputLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="wrongInputLabel">Incorrect input</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Repair state and commission date must be given!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //Initializes components.
+    $(document).ready(function() {
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
+        });
+
+    });
+
+    function onChangesConfirm() {
+        var dateWrong = false;
+        var faultId = $('#faultId')[0].value;
+        var repairId = $('#repairId')[0].value;
+        var repairState = $('#repairStateInput')[0].value;
+        var commissionDate = $('#commissionDateInput')[0].value;
+        var startDate = $('#startDateInput')[0].value;
+        var finishDate = $('#finishDateInput')[0].value;
+        var companyNip = $('#companyNipInput')[0].value;
+        var convertedStartDate = null;
+        var convertedFinishDate = null;
+        var convertedCommissionDate = null;
+
+        if (startDate !== null && startDate !== "") {
+            try {
+                convertedStartDate = new Date(startDate).toISOString();
+            } catch (ex) {
+                showPopupStartDate();
+                dateWrong = true; //Remember that there was something wrong with ate and give user chance to correct it.
+            }
+        }
+        if (finishDate !== null && finishDate !== "") {
+            try {
+                convertedFinishDate = new Date(finishDate).toISOString();
+            } catch (ex) {
+                showPopupFinishDate();
+                dateWrong = true; //Remember that there was something wrong with ate and give user chance to correct it.
+            }
+        }
+        if (commissionDate !== null && commissionDate !== "") {
+            try {
+                convertedCommissionDate = new Date(commissionDate).toISOString();
+            } catch (ex) {
+                showPopupCommissionDate();
+                dateWrong = true; //Remember that there was something wrong with ate and give user chance to correct it.
+            }
+        }
+        if (!dateWrong) {
+            if (!allNecessaryFieldsFilled(repairState, commissionDate)) {
+                $('#wrongInputModal').modal('show'); //show popup - one of required data chunks is incomplete.
+            } else {
+                $.post("@Url.Action("ConfirmRepairEdit", "Repairs")",
+                    {
+                        faultId: faultId,
+                        repairId: repairId,
+                        repairState: repairState,
+                        startDate: convertedStartDate,
+                        finishDate: convertedFinishDate,
+                        commissionDate: convertedCommissionDate,
+                        companyNip: companyNip
+                    }).then(function() {
+                        location.href = '@Url.Action("Index", "Repairs")?faultId='+faultId;
+                    });
+            }
+        }
+    }
+    //Something was wrong with start date input. Show popup.
+    function showPopupStartDate() {
+        $('#startDateInput').popover('show');
+    }
+    //Something was wrong with finish date input. Show popup.
+    function showPopupFinishDate() {
+        $('#finishDateInput').popover('show');
+    }
+    //Something was wrong with commission date input. Show popup.
+    function showPopupCommissionDate() {
+        $('#commissionDateInput').popover('show');
+    }
+    function onCancel() {
+        location.href = '@Url.Action("Index", "Repairs")?faultId='+faultId;
+    }
+
+    function allNecessaryFieldsFilled(repairState, commissionDate) {
+        if (repairState === null || commissionDate === null) {
+            return false; //show popup - one of required data chunks is incomplete.
+        } else if (repairState === "" || commissionDate === "") {
+            return false; //show popup - one of required data chunks is incomplete.
+        }
+
+        return true;
+    }
+</script>

@@ -16,9 +16,8 @@ namespace DB.Services.Implementation
         {
             if (newFaultData.id_mieszkania == null)
             {
-                return false;       //We cannot setup the fault - leave.
+                return false;       //There's no residence assigned - quite useless fault.
             }
-
             try
             {
                 using (var ctx = new DBProjectEntities())

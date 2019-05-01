@@ -31,8 +31,8 @@ namespace DB
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FakturyNapraw> FakturyNapraw { get; set; }
-        public virtual Firmy Firmy { get; set; }
         public virtual Usterki Usterki { get; set; }
         public virtual StanyNapraw StanyNapraw { get; set; }
+        public virtual Firmy Firmy { get; set; }
     }
 }

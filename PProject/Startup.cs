@@ -51,6 +51,8 @@ namespace PProject
             services.AddTransient(typeof(IRepairsService), s => new RepairsService());
             //Add dependency injection for the fault service.
             services.AddTransient(typeof(IFaultService), s => new FaultService());
+            //Add dependency injection for the companies service.
+            services.AddTransient(typeof(ICompanyService), s => new CompanyService());
 
             services.AddController(typeof(Startup).Assembly.GetExportedTypes()
                 .Where(t => !t.IsAbstract && !t.IsGenericTypeDefinition)

@@ -93,6 +93,7 @@
       <DependentUpon>BDProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Implementation\BuildingModel.cs" />
+    <Compile Include="Model\Implementation\CompanyModel.cs" />
     <Compile Include="Model\Implementation\FaultDataModel.cs" />
     <Compile Include="Model\Implementation\FaultModel.cs" />
     <Compile Include="Model\Implementation\PaymentBillModel.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Model\Implementation\RentalDataModel.cs" />
     <Compile Include="Model\Implementation\RepairBillModel.cs" />
     <Compile Include="Model\Implementation\StrictRentalDataModel.cs" />
+    <Compile Include="Model\Interfaces\ICompanyModel.cs" />
     <Compile Include="Model\Interfaces\IFaultModel.cs" />
     <Compile Include="Model\Implementation\ResidenceModel.cs" />
     <Compile Include="Model\Implementation\ResidentModel.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="RentalDataView.cs">
       <DependentUpon>BDProject.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\Implementation\CompanyService.cs" />
     <Compile Include="Services\Implementation\FaultService.cs" />
     <Compile Include="Services\Implementation\PaymentBillService.cs" />
     <Compile Include="Services\Implementation\PaymentService.cs" />
@@ -125,6 +128,7 @@
     <Compile Include="Services\Implementation\ResidencesService.cs" />
     <Compile Include="Services\Implementation\ResidentsService.cs" />
     <Compile Include="Model\Interfaces\IResidentModel.cs" />
+    <Compile Include="Services\Interfaces\ICompanyService.cs" />
     <Compile Include="Services\Interfaces\IFaultService.cs" />
     <Compile Include="Services\Interfaces\IPaymentBillService.cs" />
     <Compile Include="Services\Interfaces\IPaymentService.cs" />

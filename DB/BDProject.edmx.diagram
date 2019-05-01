@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="DBProjectModel.Dozorcy" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBProjectModel.FakturyNapraw" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBProjectModel.FakturyWynajem" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBProjectModel.Firmy" Width="1.5" PointX="5.5" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="DBProjectModel.Mieszkania" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DBProjectModel.Najemcy" Width="1.5" PointX="6.125" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBProjectModel.Naprawy" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
@@ -21,7 +20,6 @@
         <AssociationConnector Association="DBProjectModel.FK__Mieszkani__id_bu__164452B1" ManuallyRouted="false" />
         <AssociationConnector Association="DBProjectModel.FK__FakturyNa__id_na__24927208" ManuallyRouted="false" />
         <AssociationConnector Association="DBProjectModel.FK__FakturyWy__id_wy__35BCFE0A" ManuallyRouted="false" />
-        <AssociationConnector Association="DBProjectModel.FK__Naprawy__id_firm__1FCDBCEB" ManuallyRouted="false" />
         <AssociationConnector Association="DBProjectModel.FK__Usterki__id_mies__1920BF5C" ManuallyRouted="false" />
         <AssociationConnector Association="DBProjectModel.FK__Wynajmy__id_mies__31EC6D26" ManuallyRouted="false" />
         <AssociationConnector Association="DBProjectModel.FK__Wynajmy__id_naje__32E0915F" ManuallyRouted="false" />
@@ -31,6 +29,8 @@
         <AssociationConnector Association="DBProjectModel.FK__Usterki__stan__1A14E395" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DBProjectModel.RentalDataView" Width="1.5" PointX="3.375" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBProjectModel.FaultsDataView" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="DBProjectModel.Firmy" Width="1.5" PointX="5.375" PointY="4.875" />
+        <AssociationConnector Association="DBProjectModel.FK__Naprawy__id_firm__1FCDBCEB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

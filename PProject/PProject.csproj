@@ -194,6 +194,9 @@
     <Compile Include="Mapper\ViewModelMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Companies\CompanyViewModel.cs" />
+    <Compile Include="Models\Faults\FaultDataViewModel.cs" />
+    <Compile Include="Models\Faults\FaultViewModel.cs" />
     <Compile Include="Models\PaymentBills\PaymentBillListViewModel.cs" />
     <Compile Include="Models\PaymentBills\PaymentBillViewModel.cs" />
     <Compile Include="Models\Payments\PaymentListViewModel.cs" />
@@ -201,6 +204,8 @@
     <Compile Include="Models\Rentals\RentalDataViewModel.cs" />
     <Compile Include="Models\Rentals\RentalEditDataViewModel.cs" />
     <Compile Include="Models\Rentals\StrictRentalDataViewModel.cs" />
+    <Compile Include="Models\Repairs\RepairEditViewModel.cs" />
+    <Compile Include="Models\Repairs\RepairListViewModel.cs" />
     <Compile Include="Models\Residences\BuildingListViewModel.cs" />
     <Compile Include="Models\Residences\BuildingViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -438,6 +443,8 @@
     <Content Include="Views\Payments\EditPayment.cshtml" />
     <Content Include="Views\PaymentBills\Index.cshtml" />
     <Content Include="Views\PaymentBills\EditPaymentBill.cshtml" />
+    <Content Include="Views\Faults\EditFault.cshtml" />
+    <Content Include="Views\Repairs\EditRepair.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

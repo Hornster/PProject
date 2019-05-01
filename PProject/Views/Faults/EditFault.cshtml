@@ -1,0 +1,94 @@
+﻿@model PProject.Models.Faults.FaultDataViewModel
+@{
+    ViewBag.Title = "Edit Fault";
+}
+<input value="@Model.id_usterki" id="faultId" style="visibility: hidden">
+
+<div id="editInputs" class="container" style="float: left; width: 100%">
+    <div class="jumbotron">
+        <h2>@ViewBag.Title</h2>
+        <div id="pesel" class="md-form">
+            <input value="@Model.adres_budynku" type="text" id="buildingAddressInput" class="form-control">
+            <label for="buildingAddressInput">building Address</label>
+        </div>
+        <div id="residenceNumber" class="md-form">
+            <input value="@Model.numer" type="number" min="1" id="residenceNumberInput" class="form-control">
+            <label for="residenceNumberInput">Residence Number</label>
+        </div>
+        <div id="faultState" class="md-form">
+            <input value="@Model.stan" type="text" id="faultStateInput" class="form-control">
+            <label for="faultStateInput">Fault State</label>
+        </div>
+        <div id="description" class="input-group">
+            <textarea class="form-control" value="@Model.opis" id="faultDescriptionInput" type="text">@Model.opis</textarea>
+            <label for="faultDescriptionInput">Description</label>
+        </div>
+    </div>
+</div>
+
+<div id="controlButtons" class="container" style="float: right">
+    <button onclick="onChangesConfirm()" type="button" class="btn btn-success">Confirm</button>
+    <button onclick="onCancel()" type="button" class="btn btn-light">Cancel</button>
+</div>
+
+<div class="modal fade" id="wrongInputModal" tabindex="-1" role="dialog" aria-labelledby="wrongInputLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="wrongInputLabel">Incorrect input</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                All fields must be filled!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function onChangesConfirm() {
+        var faultId = $('#faultId')[0].value;
+        var buildingAddress = $('#buildingAddressInput')[0].value;
+        var residenceNumber = $('#residenceNumberInput')[0].value;
+        var faultState = $('#faultStateInput')[0].value;
+        var faultDescription = $('#faultDescriptionInput')[0].value;
+        
+        if (!allNecessaryFieldsFilled(buildingAddress, residenceNumber, faultState, faultDescription)) {
+            $('#wrongInputModal').modal('show'); //show popup - one of required data chunks is incomplete.
+        } else {
+            $.post("@Url.Action("ConfirmFaultEdit", "Faults")",
+                {
+                    faultId: faultId,
+                    buildingAddress: buildingAddress,
+                    residenceNumber: residenceNumber,
+                    description: faultDescription,
+                    state: faultState
+                }).then(function() {
+                    location.href = '@Url.Action("Index", "Faults")';
+                });
+        }
+        
+    }
+    function onCancel() {
+        location.href = '@Url.Action("Index", "Faults")';
+    }
+
+    function allNecessaryFieldsFilled(buildingAddress, residenceNumber, faultState, faultDescription) {
+        if (buildingAddress === null || faultState === null
+            || residenceNumber === null || faultDescription === null) {
+            return false; //show popup - one of required data chunks is incomplete.
+        } else if (buildingAddress === "" || faultState === ""
+            || residenceNumber === "" || faultDescription ==="") {
+            return false; //show popup - one of required data chunks is incomplete.
+        }
+
+        return true;
+    }
+</script>

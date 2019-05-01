@@ -29,7 +29,6 @@ namespace DB
         public virtual DbSet<Dozorcy> Dozorcy { get; set; }
         public virtual DbSet<FakturyNapraw> FakturyNapraw { get; set; }
         public virtual DbSet<FakturyWynajem> FakturyWynajem { get; set; }
-        public virtual DbSet<Firmy> Firmy { get; set; }
         public virtual DbSet<Mieszkania> Mieszkania { get; set; }
         public virtual DbSet<Najemcy> Najemcy { get; set; }
         public virtual DbSet<Naprawy> Naprawy { get; set; }
@@ -40,5 +39,6 @@ namespace DB
         public virtual DbSet<Wynajmy> Wynajmy { get; set; }
         public virtual DbSet<RentalDataView> RentalDataView { get; set; }
         public virtual DbSet<FaultsDataView> FaultsDataView { get; set; }
+        public virtual DbSet<Firmy> Firmy { get; set; }
     }
 }

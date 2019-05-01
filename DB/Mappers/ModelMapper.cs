@@ -80,6 +80,12 @@ namespace DB.Mappers
                 .ForMember(dest => dest.Wynajmy, dest => dest.Ignore());
             cfg.CreateMap<FakturyWynajem, PaymentBillModel>()
                 .ForSourceMember(src => src.Wynajmy, src => src.DoNotValidate());
+
+            //Companies
+            cfg.CreateMap<CompanyModel, Firmy>()
+                .ForMember(dest => dest.Naprawy, dest => dest.Ignore());
+            cfg.CreateMap<Firmy, CompanyModel>()
+                .ForSourceMember(dest => dest.Naprawy, dest => dest.DoNotValidate());
         }).CreateMapper();
 
     }
