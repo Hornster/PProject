@@ -16,8 +16,8 @@ namespace DB.Services.Interfaces
 
         CompanyModel GetSingleCompany(string nip);
 
-        void AddOrEditResident(CompanyModel newCompany);
+        void AddOrEditCompany(CompanyModel newCompany);
 
-        void RemoveResident(int companyId);
+        void RemoveCompany(int companyId);
     }
 }

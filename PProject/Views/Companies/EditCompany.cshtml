@@ -1,0 +1,88 @@
+﻿@model PProject.Models.Companies.CompanyViewModel
+@{
+    ViewBag.Title = "Edit Company";
+}
+<input id="companyId" value="@Model.id_firmy" style="visibility: hidden"/>
+
+<div id="editInputs" class="container" style="float: left; width: 100%">
+    <div class="jumbotron">
+        <h2>@ViewBag.Title</h2>
+        <div id="companyNip" class="md-form">
+            <input value="@Model.NIP" type="text" id="companyNipInput" maxlength="10"class="form-control">
+            <label for="companyNipInput">Company NIP</label>
+        </div>
+        <div id="companyName" class="md-form">
+            <input value="@Model.nazwa_firmy" type="text" id="companyNameInput" maxlength="40" class="form-control">
+            <label for="companyNameInput">Company Name</label>
+        </div>
+        <div id="companyPhone" class="md-form">
+            <input value="@Model.nr_telefonu" type="text" id="companyPhoneInput" maxlength="12" class="form-control">
+            <label for="companyPhoneInput">Company Phone</label>
+        </div>
+    </div>
+</div>
+
+<div id="controlButtons" class="container" style="float: right">
+    <button onclick="onChangesConfirm()" type="button" class="btn btn-success">Confirm</button>
+    <button onclick="onCancel()" type="button" class="btn btn-light">Cancel</button>
+</div>
+
+<div class="modal fade" id="wrongInputModal" tabindex="-1" role="dialog" aria-labelledby="wrongInputLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="wrongInputLabel">Incorrect input</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                All fields must be filled!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function onChangesConfirm() {
+        var companyId = $('#companyId')[0].value;
+        var companyNip = $('#companyNipInput')[0].value;
+        var companyName = $('#companyNameInput')[0].value;
+        var companyPhone = $('#companyPhoneInput')[0].value;
+
+        if (!allNecessaryFieldsFilled(companyNip, companyName, companyPhone)) {
+            $('#wrongInputModal').modal('show'); //show popup - one of required data chunks is incomplete.
+        } else {
+            $.post("@Url.Action("ConfirmCompanyEdit", "Companies")",
+                {
+                    companyId: companyId,
+                    companyNip: companyNip,
+                    companyName: companyName,
+                    companyPhone: companyPhone
+                }).then(function() {
+                    location.href = '@Url.Action("Index", "Companies")';
+                });
+        }
+
+    }
+    function onCancel() {
+        location.href = '@Url.Action("Index", "Companies")';
+    }
+
+    function allNecessaryFieldsFilled(companyNip, companyName, companyPhone) {
+        if (companyNip === null || companyPhone === null
+            || companyName === null) {
+            return false; //show popup - one of required data chunks is incomplete.
+        } else if (companyNip === "" || companyPhone === ""
+            || companyName === "") {
+            return false; //show popup - one of required data chunks is incomplete.
+        }
+
+        return true;
+    }
+</script>

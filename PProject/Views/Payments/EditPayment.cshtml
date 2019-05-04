@@ -14,7 +14,7 @@
             <label for="paymentValueInput">Payment Value</label>
         </div>
         <div id="paymentDate" class="md-form">
-            <input value="@Model.data_platnosci.ToString()" type="text" id="paymentDateInput" class="form-control"
+            <input value="@(Model.data_platnosci?.ToString("u"))" type="text" id="paymentDateInput" class="form-control"
                    data-toggle="popover" data-trigger="focus" title="Wrong format" data-placement="Right" data-content="Date format incorrect. Try: yyyy-mm-dd hh:mm:ss.">
             <label for="paymentDateInput">Payment Date</label>
         </div>

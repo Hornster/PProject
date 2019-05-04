@@ -178,12 +178,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\FaultsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentBillsController.cs" />
     <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\RentalController.cs" />
+    <Compile Include="Controllers\RepairBillsController.cs" />
     <Compile Include="Controllers\RepairsController.cs" />
     <Compile Include="Controllers\ResidencesController.cs" />
     <Compile Include="Controllers\ResidentsController.cs" />
@@ -204,6 +206,8 @@
     <Compile Include="Models\Rentals\RentalDataViewModel.cs" />
     <Compile Include="Models\Rentals\RentalEditDataViewModel.cs" />
     <Compile Include="Models\Rentals\StrictRentalDataViewModel.cs" />
+    <Compile Include="Models\RepairBills\RepairBillListViewModel.cs" />
+    <Compile Include="Models\RepairBills\RepairBillViewModel.cs" />
     <Compile Include="Models\Repairs\RepairEditViewModel.cs" />
     <Compile Include="Models\Repairs\RepairListViewModel.cs" />
     <Compile Include="Models\Residences\BuildingListViewModel.cs" />
@@ -445,6 +449,11 @@
     <Content Include="Views\PaymentBills\EditPaymentBill.cshtml" />
     <Content Include="Views\Faults\EditFault.cshtml" />
     <Content Include="Views\Repairs\EditRepair.cshtml" />
+    <Content Include="Views\RepairBills\Index.cshtml" />
+    <Content Include="Views\RepairBills\EditRepairBill.cshtml" />
+    <Content Include="Views\RepairBills\CouldNotFindFault.cshtml" />
+    <Content Include="Views\Companies\Index.cshtml" />
+    <Content Include="Views\Companies\EditCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

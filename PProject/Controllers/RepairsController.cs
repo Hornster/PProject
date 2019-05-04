@@ -85,7 +85,7 @@ namespace PProject.Controllers
             DateTime? finishDate, DateTime? commissionDate, string companyNip)
         {
             int? companyId = companyService.GetSingleCompany(companyNip)?.id_firmy;
-            var newRental = new RepairViewModel()
+            var newRepair = new RepairViewModel()
             {
                 id_usterki = faultId,
                 id_firmy = companyId,
@@ -96,7 +96,7 @@ namespace PProject.Controllers
                 id_naprawy = repairId
             };
 
-            repairsService.AddOrEditRepair(ViewModelMapper.Mapper.Map<RepairModel>(newRental));
+            repairsService.AddOrEditRepair(ViewModelMapper.Mapper.Map<RepairModel>(newRepair));
         }
     }
 }

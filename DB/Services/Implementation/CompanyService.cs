@@ -76,7 +76,7 @@ namespace DB.Services.Implementation
             return queryResult;
         }
 
-        public void AddOrEditResident(CompanyModel newCompany)
+        public void AddOrEditCompany(CompanyModel newCompany)
         {
             try
             {
@@ -107,7 +107,7 @@ namespace DB.Services.Implementation
             }
         }
 
-        public void RemoveResident(int companyId)
+        public void RemoveCompany(int companyId)
         {
             try
             {

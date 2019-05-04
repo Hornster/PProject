@@ -2,9 +2,6 @@
 @{
     ViewBag.Title = "Edit Repair";
 }
-
-<h2>EditRepair</h2>
-
 <input value="@Model.Repair.id_usterki" id="faultId" style="visibility: hidden">
 <input value="@Model.Repair.id_naprawy" id="repairId" style="visibility: hidden">
 
@@ -16,17 +13,17 @@
             <label for="repairStateInput">Current Repair State</label>
         </div>
         <div id="commissionDate" class="md-form">
-            <input value="@Model.Repair.data_zlecenia.ToString()" type="text" id="commissionDateInput" class="form-control"
+            <input value="@(Model.Repair.data_zlecenia?.ToString("u"))" type="text" id="commissionDateInput" class="form-control"
                    data-toggle="popover" data-trigger="focus" title="Wrong format" data-placement="Right" data-content="Date format incorrect. Try: yyyy-mm-dd hh:mm:ss.">
             <label for="commissionDateInput">Commission Date</label>
         </div>
         <div id="startDate" class="md-form">
-            <input value="@Model.Repair.data_rozpoczecia.ToString()" type="text" id="startDateInput" class="form-control"
+            <input value="@(Model.Repair.data_rozpoczecia?.ToString("u"))" type="text" id="startDateInput" class="form-control"
                    data-toggle="popover" data-trigger="focus" title="Wrong format" data-placement="Right" data-content="Date format incorrect. Try: yyyy-mm-dd hh:mm:ss.">
             <label for="startDateInput">Start Date</label>
         </div>
         <div id="finishDate" class="md-form">
-            <input value="@Model.Repair.data_ukonczenia.ToString()" type="text" id="finishDateInput" class="form-control"
+            <input value="@(Model.Repair.data_ukonczenia?.ToString("u"))" type="text" id="finishDateInput" class="form-control"
                    data-toggle="popover" data-trigger="focus" title="Wrong format" data-placement="Right" data-content="Date format incorrect. Try: yyyy-mm-dd hh:mm:ss.">
             <label for="finishDateInput">Finish Date</label>
         </div>
@@ -39,7 +36,7 @@
 
 <div id="controlButtons" class="container" style="float: right">
     <button onclick="onChangesConfirm()" type="button" class="btn btn-success">Confirm</button>
-    <button onclick="onCancel()" type="button" class="btn btn-light">Cancel</button>
+    <button onclick="onCancel(@Model.Repair.id_usterki)" type="button" class="btn btn-light">Cancel</button>
 </div>
 
 <div class="modal fade" id="wrongInputModal" tabindex="-1" role="dialog" aria-labelledby="wrongInputLabel"
@@ -139,7 +136,7 @@
     function showPopupCommissionDate() {
         $('#commissionDateInput').popover('show');
     }
-    function onCancel() {
+    function onCancel(faultId) {
         location.href = '@Url.Action("Index", "Repairs")?faultId='+faultId;
     }
 
