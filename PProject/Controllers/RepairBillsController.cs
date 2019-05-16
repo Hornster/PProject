@@ -12,6 +12,7 @@ using PProject.Models.Repairs;
 
 namespace PProject.Controllers
 {
+    [Authorize]
     public class RepairBillsController : Controller
     {
         #region Members

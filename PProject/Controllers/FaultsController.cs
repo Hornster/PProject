@@ -10,6 +10,7 @@ using PProject.Models.Rentals;
 
 namespace PProject.Controllers
 {
+    [Authorize]
     public class FaultsController : Controller
     {
         #region Members

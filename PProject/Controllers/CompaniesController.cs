@@ -12,6 +12,7 @@ using PProject.Models.Faults;
 
 namespace PProject.Controllers
 {
+    [Authorize]
     public class CompaniesController : Controller
     {
         #region Members

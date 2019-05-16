@@ -12,6 +12,7 @@ using PProject.Models.Payments;
 
 namespace PProject.Controllers
 {
+    [Authorize]
     public class PaymentBillsController : Controller
     {
         #region Members

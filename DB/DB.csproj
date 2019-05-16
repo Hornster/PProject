@@ -118,6 +118,7 @@
     <Compile Include="RentalDataView.cs">
       <DependentUpon>BDProject.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\Implementation\AuthenticationService.cs" />
     <Compile Include="Services\Implementation\CompanyService.cs" />
     <Compile Include="Services\Implementation\FaultService.cs" />
     <Compile Include="Services\Implementation\PaymentBillService.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Services\Implementation\ResidencesService.cs" />
     <Compile Include="Services\Implementation\ResidentsService.cs" />
     <Compile Include="Model\Interfaces\IResidentModel.cs" />
+    <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
     <Compile Include="Services\Interfaces\ICompanyService.cs" />
     <Compile Include="Services\Interfaces\IFaultService.cs" />
     <Compile Include="Services\Interfaces\IPaymentBillService.cs" />

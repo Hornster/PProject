@@ -11,6 +11,7 @@ using PProject.Models.Residents;
 
 namespace PProject.Controllers
 {
+    [Authorize]
     public class ResidentsController : Controller
     {
         #region Members
