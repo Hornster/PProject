@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Security;
+using DB.Common.Enums;
 using DB.Model.Implementation;
 using DB.Services.Interfaces;
+using Microsoft.Ajax.Utilities;
+using PProject.App_Start;
 using PProject.Mapper;
 using PProject.Models;
 using PProject.Models.Faults;
@@ -27,7 +31,7 @@ namespace PProject.Controllers
             this.residencesService = residencesService;
         }
         #endregion Ctor
-
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer)]
         public ActionResult Index()
         {
             var viewModel = new ListViewModel<FaultDataViewModel>() { Items = new List<FaultDataViewModel>() };
@@ -38,12 +42,13 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer)]
         public ActionResult AddFault()
         {
             var viewModel = new FaultDataViewModel() { id_usterki = -1 };   //
             return View("EditFault", viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer)]
         public ActionResult EditFault(int faultId)
         {
             var queryResult = faultService.GetSingleFaultDataModel(faultId);
@@ -51,13 +56,13 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer)]
         public void DeleteFault(int faultId)
         {
             faultService.RemoveFault(faultId);
         }
 
-
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer)]
         public void ConfirmFaultEdit(int faultId, string buildingAddress, int residenceNumber,
             string description, string state)
         {
