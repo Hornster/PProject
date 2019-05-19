@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using AuthDB.Services.Implementations;
+using AuthDB.Services.Interfaces;
 using DB.Services.Implementation;
 using DB.Services.Interfaces;
 using Microsoft.AspNet.Identity;
@@ -53,6 +55,8 @@ namespace PProject
             services.AddTransient(typeof(IFaultService), s => new FaultService());
             //Add dependency injection for the companies service.
             services.AddTransient(typeof(ICompanyService), s => new CompanyService());
+            //Add dependency injection for the user service.
+            services.AddTransient(typeof(IUserService), s => new UserService());
 
             services.AddController(typeof(Startup).Assembly.GetExportedTypes()
                 .Where(t => !t.IsAbstract && !t.IsGenericTypeDefinition)

@@ -1,0 +1,63 @@
+﻿@model PProject.Models.ListViewModel<PProject.Models.UserManagement.UserViewModel>
+@{
+    ViewBag.Title = "Users";
+}
+
+
+<div id="header" class="container" style="width:100%">
+    <h2>@ViewBag.Title</h2>
+</div>
+<div id="tableContainer" class="container">
+    <table id="usersTable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col" class="col-sm-1"></th> <!--editing control-->
+                <th scope="col" class="col-sm-1"></th> <!--removing control-->
+                <th scope="col" class="col-lg-1">Username</th>
+                <th scope="col" class="col-lg-1">Email</th>
+                <th scope="col" class="col-md-1">Phone Number</th>
+                @*Iterate each element in model for given row in table.*@
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model?.Items?.Count > 0)
+            {
+                foreach (var user in Model.Items)
+                {
+                    <tr>
+                        <td><a href="@Url.Action("EditUser", "UserManagement")?faultId=@user.Id"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
+                        <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@user.Id)"></i></td>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.PhoneNumber</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="11" style="text-align: center">No items to display.</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    ///Initializes the table.
+    $(document).ready(function () {
+        var table = $('#usersTable').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+    //Removes given residence from building.
+    function deleteRecord(faultId) {
+        $.post("@Url.Action("DeleteUser", "UserManagement")",
+            {
+                userId: userId
+            }).then(function() {
+            window.location.href = window.location.href;
+        });
+    }
+
+</script>

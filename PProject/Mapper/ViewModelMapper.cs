@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AuthDB.Model.Implementation;
 using AutoMapper;
 using DB.Model;
 using DB.Model.Implementation;
@@ -11,6 +12,7 @@ using PProject.Models.Payments;
 using PProject.Models.Repairs;
 using PProject.Models.Residences;
 using PProject.Models.Residents;
+using PProject.Models.UserManagement;
 
 namespace PProject.Mapper
 {
@@ -37,6 +39,10 @@ namespace PProject.Mapper
                 //Payment Bills
                 cfg.CreateMap<PaymentBillModel, PaymentBillViewModel>();
                 cfg.CreateMap<PaymentBillViewModel, PaymentBillModel>();
+
+                //UserManager
+                cfg.CreateMap<UserViewModel, UserModel>();
+                cfg.CreateMap<UserModel, UserViewModel>();
             }).CreateMapper();
 
     }

@@ -55,7 +55,7 @@ namespace AuthDB.Services.Implementations
             return users;
         }
 
-        public void EditUser(UserModel user, List<RoleModel> newRoles)
+        public void EditUserBasicData(UserModel user, List<RoleModel> newRoles)
         {
             try
             {

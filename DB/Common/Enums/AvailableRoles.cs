@@ -11,7 +11,7 @@ namespace DB.Common.Enums
     {
         [Display(Name = "Administrator")]
         Administrator,
-        [Display(Name = "User Management")]
+        //[Display(Name = "UserManagement")]
         UserManagement,
         [Display(Name = "Janitor")]
         Janitor,
