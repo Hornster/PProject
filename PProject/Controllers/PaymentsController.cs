@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DB.Common.Enums;
 using DB.Model.Implementation;
 using DB.Services.Interfaces;
+using PProject.App_Start;
 using PProject.Mapper;
 using PProject.Models;
 using PProject.Models.Payments;
@@ -25,7 +27,7 @@ namespace PProject.Controllers
             this.paymentService = paymentService;
         }
         #endregion Ctor
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult Index(int rentalId)
         {
             var viewModel = new PaymentListViewModel() { Items = new List<PaymentViewModel>()};
@@ -35,7 +37,7 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult AddPayment(int rentalId)
         {
             var viewModel = new PaymentViewModel()
@@ -46,7 +48,7 @@ namespace PProject.Controllers
 
             return View("EditPayment", viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult EditPayment(int paymentId)
         {
             var viewModel = new PaymentViewModel();
@@ -55,12 +57,12 @@ namespace PProject.Controllers
             viewModel = ViewModelMapper.Mapper.Map<PaymentViewModel>(result);
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public void DeletePayment(int paymentId)
         {
             paymentService.RemovePayment(paymentId);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public void ConfirmPaymentEdit(int rentalId, int paymentId, float paymentValue, DateTime paymentDate, string paymentTitle)
         {
             var viewModel = new PaymentViewModel()

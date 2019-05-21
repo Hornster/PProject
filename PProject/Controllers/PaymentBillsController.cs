@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DB.Common.Enums;
 using DB.Model.Implementation;
 using DB.Services.Interfaces;
+using PProject.App_Start;
 using PProject.Mapper;
 using PProject.Models;
 using PProject.Models.PaymentBills;
@@ -26,7 +28,7 @@ namespace PProject.Controllers
             this.paymentBillService = paymentBillService;
         }
         #endregion Ctor
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult Index(int rentalId)
         {
             var viewModel = new PaymentBillListViewModel() { Items = new List<PaymentBillViewModel>() };
@@ -36,7 +38,7 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult AddPaymentBill(int rentalId)
         {
             var viewModel = new PaymentBillViewModel()
@@ -47,7 +49,7 @@ namespace PProject.Controllers
 
             return View("EditPaymentBill", viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult EditPaymentBill(int paymentBillId)
         {
             var viewModel = new PaymentBillViewModel();
@@ -56,12 +58,12 @@ namespace PProject.Controllers
             viewModel = ViewModelMapper.Mapper.Map<PaymentBillViewModel>(result);
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public void DeletePaymentBill(int paymentBillId)
         {
             paymentBillService.RemovePaymentBill(paymentBillId);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public void ConfirmPaymentBillEdit(int rentalId, int paymentBillId, float paymentBillValue, DateTime paymentBillDate, int paymentBillNumber)
         {
             var viewModel = new PaymentBillViewModel()

@@ -13,9 +13,9 @@
             <tr>
                 <th scope="col" class="col-sm-1"></th> <!--editing control-->
                 <th scope="col" class="col-sm-1"></th> <!--removing control-->
-                <th scope="col" class="col-lg-1">Username</th>
-                <th scope="col" class="col-lg-1">Email</th>
-                <th scope="col" class="col-md-1">Phone Number</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
                 @*Iterate each element in model for given row in table.*@
             </tr>
         </thead>
@@ -25,8 +25,8 @@
                 foreach (var user in Model.Items)
                 {
                     <tr>
-                        <td><a href="@Url.Action("EditUser", "UserManagement")?faultId=@user.Id"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
-                        <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@user.Id)"></i></td>
+                        <td><a href="@Url.Action("EditUser", "UserManagement")?userId=@user.Id"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
+                        <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord('@user.Id')"></i></td>
                         <td>@user.UserName</td>
                         <td>@user.Email</td>
                         <td>@user.PhoneNumber</td>
@@ -51,7 +51,7 @@
         $('.dataTables_length').addClass('bs-select');
     });
     //Removes given residence from building.
-    function deleteRecord(faultId) {
+    function deleteRecord(userId) {
         $.post("@Url.Action("DeleteUser", "UserManagement")",
             {
                 userId: userId

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DB.Common.Enums;
 using DB.Model.Implementation;
 using DB.Services.Interfaces;
+using PProject.App_Start;
 using PProject.Mapper;
 using PProject.Models;
 using PProject.Models.Rentals;
@@ -32,7 +34,7 @@ namespace PProject.Controllers
             this.residentService = residentService;
         }
         #endregion Ctor
-
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult Index()
         {
             var viewModel = new ListViewModel<RentalDataViewModel>() { Items = new List<RentalDataViewModel>() };
@@ -43,13 +45,13 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public ActionResult AddRental()
         {
             var viewModel = new RentalEditDataViewModel(){RentalId = -1};   //
             return View("EditRental", viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public ActionResult EditRental(int rentalId)
         {
             var queryResult = rentalService.GetSingleRentalDataModel(rentalId);
@@ -69,13 +71,13 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public void DeleteRental(int rentalId)
         {
             rentalService.RemoveRental(rentalId);
         }
 
-        
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public void ConfirmRentalEdit(int rentalId, string residentPESEL, string buildingAddress,
             int residenceNumber, DateTime? startDate, DateTime? expiringDate, float? rentalPrice)
         {

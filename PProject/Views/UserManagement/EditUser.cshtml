@@ -1,0 +1,121 @@
+﻿@using DB.Common.Enums
+@model PProject.Models.UserManagement.UserEditViewModel
+@{
+    ViewBag.Title = "Edit User";
+}
+<input value="@Model.User.Id" id="userId" style="visibility: hidden">
+
+<div id="editInputs" class="container" style="float: left; width: 100%">
+    <div class="jumbotron">
+        <h2>@ViewBag.Title</h2>
+        <div id="forms" class="container-fluid">
+            <div id="email" class="md-form">
+                <input value="@Model.User.Email" type="text" id="emailInput" class="form-control">
+                <label for="emailInput">E-mail</label>
+            </div>
+            <div id="phoneNumber" class="md-form">
+                <input value="@Model.User.PhoneNumber" type="text" id="phoneNumberInput" class="form-control">
+                <label for="phoneNumberInput">Phone Number</label>
+            </div>
+        </div>
+
+        <div id="rolesBox" class="container-fluid">
+            <div id="rolesContainer" class="custom-control custom-checkbox">
+                <input id="role@(AvailableRoles.Administrator)" type="checkbox" data-role-name="@(AvailableRoles.Administrator)" class="custom-control-input">
+                <label class="custom-control-label" for="role@(AvailableRoles.Administrator)">@(AvailableRoles.Administrator)</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input id="role@(AvailableRoles.Janitor)" type="checkbox" data-role-name="@(AvailableRoles.Janitor)" class="custom-control-input">
+                <label class="custom-control-label" for="role@(AvailableRoles.Janitor)">@(AvailableRoles.Janitor)</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input id="role@(AvailableRoles.Overseer)" type="checkbox" data-role-name="@(AvailableRoles.Overseer)" class="custom-control-input">
+                <label class="custom-control-label" for="role@(AvailableRoles.Overseer)">@(AvailableRoles.Overseer)</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input id="role@(AvailableRoles.Treasurer)" type="checkbox" data-role-name="@(AvailableRoles.Treasurer)" class="custom-control-input">
+                <label class="custom-control-label" for="role@(AvailableRoles.Treasurer)">@(AvailableRoles.Treasurer)</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input id="role@(AvailableRoles.UserManagement)" type="checkbox" data-role-name="@(AvailableRoles.UserManagement)" class="custom-control-input">
+                <label class="custom-control-label" for="role@(AvailableRoles.UserManagement)">@(AvailableRoles.UserManagement)</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="controlButtons" class="container" style="float: right">
+    <button onclick="onChangesConfirm()" type="button" class="btn btn-success">Confirm</button>
+    <button onclick="onCancel()" type="button" class="btn btn-light">Cancel</button>
+</div>
+
+<div class="modal fade" id="wrongInputModal" tabindex="-1" role="dialog" aria-labelledby="wrongInputLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="wrongInputLabel">Incorrect input</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Email must be provided!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function onChangesConfirm() {
+        var userId = $('#userId')[0].value;
+        var email = $('#emailInput')[0].value;
+        var phoneNumber = $('#phoneNumberInput')[0].value;
+        var newRoles = [];
+
+        var allInputs = document.getElementsByTagName("input");//Get all available inputs
+
+        for (var i = 0; i < allInputs.length; i++) {
+            var control = allInputs[i];
+            if (control.type === "checkbox") {//Only checkboxes interest us
+                if (control.checked) {
+                    newRoles.push(control.getAttribute("data-role-name"));//If any of them is checked - save its value.
+                }
+            }
+        }
+
+        if (!allNecessaryFieldsFilled(email)) {
+            $('#wrongInputModal').modal('show'); //show popup - one of required data chunks is incomplete.
+        } else {
+            $.post("@Url.Action("ConfirmEditUser", "UserManagement")",
+                {
+                    userId: userId,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                    roles: newRoles
+                }).then(function() {
+                    location.href = '@Url.Action("Index", "UserManagement")';
+                });
+        }
+
+    }
+    function onCancel() {
+        location.href = '@Url.Action("Index", "UserManagement")';
+    }
+
+    function allNecessaryFieldsFilled(email) {
+        if (email === null) {
+            return false; //show popup - one of required data chunks is incomplete.
+        } else if (email === "") {
+            return false; //show popup - one of required data chunks is incomplete.
+        }
+
+        return true;
+    }
+</script>

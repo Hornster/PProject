@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DB.Common.Enums;
 using DB.Model.Implementation;
 using DB.Services.Interfaces;
+using PProject.App_Start;
 using PProject.Mapper;
 using PProject.Models;
 using PProject.Models.Residences;
@@ -25,7 +27,7 @@ namespace PProject.Controllers
             this.residencesService = residencesService;
         }
         #endregion Ctor
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Janitor, AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public ActionResult Index()
         {
             var viewModel = new ListViewModel<BuildingViewModel>(){Items = new List<BuildingViewModel>()};
@@ -37,6 +39,7 @@ namespace PProject.Controllers
             return View(viewModel);
         }
         [HttpGet]
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Janitor, AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public ActionResult GetBuildingDetails(int buildingId)
         {
             var viewModel = new BuildingListViewModel()
@@ -55,12 +58,14 @@ namespace PProject.Controllers
             return View("BuildingDetails", viewModel);
         }
         [HttpPost]
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public void DeleteResidence(int buildingId, int residenceId)
         {
             residencesService.RemoveResidence(buildingId, residenceId);
         }
 
         [HttpPost]
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public void DeleteBuilding(int buildingId)
         {
             residencesService.RemoveBuilding(buildingId);
@@ -71,6 +76,7 @@ namespace PProject.Controllers
         /// <param name="buildingId"></param>
         /// <param name="residenceId"></param>
         /// <returns></returns>
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public ActionResult EditResidence(int buildingId, int? residenceId = null)
         {
             var viewModel = new BuildingListViewModel()
@@ -100,6 +106,7 @@ namespace PProject.Controllers
         /// <param name="buildingId"></param>
         /// <param name="residenceId"></param>
         /// <returns></returns>
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public ActionResult EditBuilding(int? buildingId)
         {
             var viewModel = new BuildingViewModel();
@@ -125,6 +132,7 @@ namespace PProject.Controllers
         /// <param name="residenceSurface"></param>
         /// <param name="residenceDescription"></param>
         [HttpPost]
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public void ConfirmResidenceChange(int buildingId, int residenceId, int residenceNumber, float residenceSurface, string residenceDescription)
         {
             var residence = new ResidenceViewModel();
@@ -144,6 +152,7 @@ namespace PProject.Controllers
         /// <param name="buildingId"></param>
         /// <param name="address"></param>
         [HttpPost]
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public void ConfirmBuildingChange(int buildingId, string address)
         {
             var building = new BuildingViewModel();

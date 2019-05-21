@@ -1,12 +1,12 @@
 ﻿@model PProject.Models.Residents.ResidentViewModel
 @{
-    ViewBag.Title = "EditResident";
+    ViewBag.Title = "Edit Resident";
 }
 <input value="@Model.id_najemcy" id="residentId" style="visibility: hidden">
 
 <div id="editInputs" class="container" style="float: left; width: 100%">
     <div class="jumbotron">
-        <h2>Edit/Add Resident</h2>
+        <h2>@ViewBag.Title</h2>
         <div id="residentName" class="md-form">
             <input value="@Model.imie" type="text" id="residentNameInput" class="md-form">
             <label for="residentNameInput">Resident Name</label>

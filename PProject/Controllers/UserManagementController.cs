@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AuthDB.Model.Implementation;
 using DB.Services.Interfaces;
 using AuthDB.Services.Interfaces;
 using DB.Common.Enums;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using PProject.App_Start;
 using PProject.Mapper;
 using PProject.Models;
@@ -39,15 +42,60 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
+        /// <summary>
+        /// Retrieves data for given user editing form.S
+        /// </summary>
+        /// <returns></returns>
         [AuthorizeRole(AvailableRoles.UserManagement, AvailableRoles.Administrator)]
-        public ActionResult EditUser()
+        public ActionResult EditUser(string userId)
         {
-            throw new NotImplementedException();
+            var queryResult = userService.GetUserById(userId);
+            var userRoles = userService.GetUserRoles(queryResult.Id);
+
+            var userViewModel = new List<RoleViewModel>();
+            userRoles.ForEach(role => userViewModel.Add(ViewModelMapper.Mapper.Map<RoleViewModel>(role)));
+
+            var viewModel = new UserEditViewModel();
+            viewModel.User = ViewModelMapper.Mapper.Map<UserViewModel>(queryResult);
+            viewModel.Roles = userViewModel;
+
+            return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.UserManagement, AvailableRoles.Administrator)]
-        public ActionResult DeleteUser()
+        public void ConfirmEditUser(string userId, string email, string phoneNumber, string[] roles)
         {
-            throw new NotImplementedException();
+            var userModel = new UserModel()
+            {
+                Id = userId,
+                Email = email,
+                PhoneNumber = phoneNumber
+            };
+
+            var newRoles = new List<RoleModel>();
+            if (roles != null)
+            {
+                foreach (var role in roles)
+                {
+                    newRoles.Add(new RoleModel()
+                    {
+                        Name = role,
+                        Id = role
+                    });
+                }
+            }
+            
+            userService.EditUserBasicData(userModel, newRoles);
+        }
+        /// <summary>
+        /// Deletes user from the database.
+        /// </summary>
+        /// <param name="userId">Id of the user to delete.</param>
+        /// <returns></returns>
+        [AuthorizeRole(AvailableRoles.UserManagement, AvailableRoles.Administrator)]
+        public void DeleteUser(string userId)
+        {
+            var issuingUserId = User.Identity.GetUserId();
+            userService.DeleteUser(issuingUserId, userId);
         }
     }
 }

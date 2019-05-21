@@ -462,6 +462,8 @@
     <Content Include="Views\Companies\Index.cshtml" />
     <Content Include="Views\Companies\EditCompany.cshtml" />
     <Content Include="Views\UserManagement\Index.cshtml" />
+    <Content Include="Views\UserManagement\EditUser.cshtml" />
+    <Content Include="Views\UserManagement\RoleButtonView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

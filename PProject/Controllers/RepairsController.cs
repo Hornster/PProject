@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DB.Common.Enums;
 using DB.Model.Implementation;
 using DB.Services.Interfaces;
+using PProject.App_Start;
 using PProject.Mapper;
 using PProject.Models;
 using PProject.Models.Companies;
@@ -30,7 +32,7 @@ namespace PProject.Controllers
             this.companyService = companyService;
         }
         #endregion Ctor
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public ActionResult Index(int faultId)
         {
             var viewModel = new RepairListViewModel() { Items = new List<RepairViewModel>() };
@@ -42,7 +44,7 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public ActionResult AddRepair(int faultId)
         {
             var viewModel = new RepairEditViewModel();
@@ -58,7 +60,7 @@ namespace PProject.Controllers
 
             return View("EditRepair", viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public ActionResult EditRepair(int repairId)
         {
             var queryResult = repairsService.GetSingleRepairModel(repairId);
@@ -76,12 +78,12 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public void DeleteRepair(int repairId)
         {
             repairsService.RemoveRepair(repairId);
         }
-
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public void ConfirmRepairEdit(int faultId, int repairId, string repairState, DateTime? startDate,
             DateTime? finishDate, DateTime? commissionDate, string companyNip)
         {

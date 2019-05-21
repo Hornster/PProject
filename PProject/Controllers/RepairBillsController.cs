@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DB.Common.Enums;
 using DB.Model.Implementation;
 using DB.Services.Interfaces;
+using PProject.App_Start;
 using PProject.Mapper;
 using PProject.Models.Companies;
 using PProject.Models.RepairBills;
@@ -29,7 +31,7 @@ namespace PProject.Controllers
             this.repairService = repairService;
         }
         #endregion Ctor
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult Index(int repairId)
         {
             var viewModel = new RepairBillListViewModel() { Items = new List<RepairBillViewModel>() };
@@ -41,7 +43,7 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult AddRepairBill(int repairId)
         {
             var viewModel = new RepairBillViewModel()
@@ -52,7 +54,7 @@ namespace PProject.Controllers
 
             return View("EditRepairBill", viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult EditRepairBill(int repairBillId)
         {
             var queryResult = repairBillService.GetSingleRepairBillModel(repairBillId);
@@ -60,12 +62,12 @@ namespace PProject.Controllers
             
             return View(viewModel);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public void DeleteRepairBill(int repairBillId)
         {
             repairBillService.RemoveRepairBill(repairBillId);
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public void ConfirmRepairBillEdit(int repairBillId, int repairId, int billNumber, float billPayment, DateTime? billDate)
         {
             var newRepairBill = new RepairBillViewModel()
@@ -79,7 +81,7 @@ namespace PProject.Controllers
 
             repairBillService.AddOrEditRepairBill(ViewModelMapper.Mapper.Map<RepairBillModel>(newRepairBill));
         }
-
+        [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult BackToRepairsTable(int repairId)
         {
             var queryResult = repairService.GetSingleRepairModel(repairId);

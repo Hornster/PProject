@@ -27,5 +27,18 @@ namespace AuthDB.Services.Interfaces
         /// <param name="user"></param>
         /// <param name="newRoles"></param>
         void EditUserBasicData(UserModel user, List<RoleModel> newRoles);
+        /// <summary>
+        /// Deletes user using provided id.
+        /// </summary>
+        /// <param name="issuingUserId">Id of user who issued the command. If same as userId - the
+        /// method will not do anything.</param>
+        /// <param name="userId">Id of user to be removed.</param>
+        void DeleteUser(string issuingUserId, string userId);
+        /// <summary>
+        /// Returns roles assigned to user of provided ID.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        List<RoleModel> GetUserRoles(string userId);
     }
 }

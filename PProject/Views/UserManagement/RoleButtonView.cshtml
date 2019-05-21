@@ -1,0 +1,13 @@
+﻿@using DB.Common.Enums
+@model DB.Common.Enums.AvailableRoles
+
+
+<button id="role@(Model.ToString())" type="button" class="btn" onclick="onButtonClick" data="@(Model.ToString())">
+    @(Model.ToString())
+</button>
+
+<script>
+    function onButtonClick(sender) {
+        sender.color = "red";
+    }
+</script>

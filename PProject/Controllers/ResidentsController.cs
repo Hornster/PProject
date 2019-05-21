@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DB.Common.Enums;
 using DB.Model.Implementation;
 using DB.Services.Interfaces;
+using PProject.App_Start;
 using PProject.Mapper;
 using PProject.Models;
 using PProject.Models.Residents;
@@ -28,6 +30,7 @@ namespace PProject.Controllers
 
 
         #region ActionMethods
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public ActionResult Index()
         {
             var viewModel = new ListViewModel<ResidentViewModel>() { Items = new List<ResidentViewModel>() };
@@ -42,12 +45,12 @@ namespace PProject.Controllers
 
 
 
-        #endregion ActionMethods
         /// <summary>
         /// Called to provide user edit form.
         /// </summary>
         /// <param name="residentId">ID of resident that will be edited.</param>
         /// <returns></returns>
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public ActionResult EditResident(int? residentId)
         {
             ResidentViewModel viewModel = null;
@@ -73,6 +76,7 @@ namespace PProject.Controllers
         /// <param name="residentSurname"></param>
         /// <param name="residentPhone"></param>
         /// <param name="residentPESEL"></param>
+        [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
         public void ConfirmResidentChange(int residentId, string residentName, string residentSurname, string residentPhone, string residentPESEL)
         {
             var newResident = new ResidentViewModel()
@@ -88,5 +92,6 @@ namespace PProject.Controllers
 
             residentsService.AddOrEditResident(preparedResident);
         }
+        #endregion ActionMethods
     }
 }

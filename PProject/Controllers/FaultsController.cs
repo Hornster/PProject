@@ -31,7 +31,7 @@ namespace PProject.Controllers
             this.residencesService = residencesService;
         }
         #endregion Ctor
-        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer)]
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public ActionResult Index()
         {
             var viewModel = new ListViewModel<FaultDataViewModel>() { Items = new List<FaultDataViewModel>() };
@@ -42,13 +42,13 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
-        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer)]
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public ActionResult AddFault()
         {
             var viewModel = new FaultDataViewModel() { id_usterki = -1 };   //
             return View("EditFault", viewModel);
         }
-        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer)]
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public ActionResult EditFault(int faultId)
         {
             var queryResult = faultService.GetSingleFaultDataModel(faultId);
@@ -56,13 +56,13 @@ namespace PProject.Controllers
 
             return View(viewModel);
         }
-        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer)]
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public void DeleteFault(int faultId)
         {
             faultService.RemoveFault(faultId);
         }
 
-        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Treasurer)]
+        [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public void ConfirmFaultEdit(int faultId, string buildingAddress, int residenceNumber,
             string description, string state)
         {

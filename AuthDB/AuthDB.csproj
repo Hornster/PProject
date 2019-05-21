@@ -43,6 +43,12 @@
     <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.SqlServerCompact.6.2.0\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -59,37 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AspNetRoles.cs">
-      <DependentUpon>DBAuth.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserClaims.cs">
-      <DependentUpon>DBAuth.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserLogins.cs">
-      <DependentUpon>DBAuth.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUsers.cs">
-      <DependentUpon>DBAuth.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>DBAuth.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBAuth.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBAuth.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBAuth.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBAuth.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBAuth.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBAuth.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Mappers\AuthModelMapper.cs" />
+    <Compile Include="Model\Implementation\IdentityModels.cs" />
     <Compile Include="Model\Implementation\RoleModel.cs" />
     <Compile Include="Model\Implementation\UserModel.cs" />
     <Compile Include="Model\Interfaces\IRoleModel.cs" />
@@ -100,29 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DBAuth.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBAuth.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DBAuth.edmx.diagram">
-      <DependentUpon>DBAuth.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DBAuth.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBAuth.edmx</DependentUpon>
-      <LastGenOutput>DBAuth.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DBAuth.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBAuth.edmx</DependentUpon>
-      <LastGenOutput>DBAuth.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
