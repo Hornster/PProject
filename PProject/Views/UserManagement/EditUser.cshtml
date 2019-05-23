@@ -21,23 +21,28 @@
 
         <div id="rolesBox" class="container-fluid">
             <div id="rolesContainer" class="custom-control custom-checkbox">
-                <input id="role@(AvailableRoles.Administrator)" type="checkbox" data-role-name="@(AvailableRoles.Administrator)" class="custom-control-input">
+                <input id="role@(AvailableRoles.Administrator)" type="checkbox" data-role-name="@(AvailableRoles.Administrator)" 
+                       class="custom-control-input" checked="@(Model.Roles.Exists(role => role.Equals(AvailableRoles.Administrator)))">
                 <label class="custom-control-label" for="role@(AvailableRoles.Administrator)">@(AvailableRoles.Administrator)</label>
             </div>
             <div class="custom-control custom-checkbox">
-                <input id="role@(AvailableRoles.Janitor)" type="checkbox" data-role-name="@(AvailableRoles.Janitor)" class="custom-control-input">
+                <input id="role@(AvailableRoles.Janitor)" type="checkbox" data-role-name="@(AvailableRoles.Janitor)" 
+                       class="custom-control-input" checked="@(Model.Roles.Exists(role => role.Equals(AvailableRoles.Janitor)))">
                 <label class="custom-control-label" for="role@(AvailableRoles.Janitor)">@(AvailableRoles.Janitor)</label>
             </div>
             <div class="custom-control custom-checkbox">
-                <input id="role@(AvailableRoles.Overseer)" type="checkbox" data-role-name="@(AvailableRoles.Overseer)" class="custom-control-input">
+                <input id="role@(AvailableRoles.Overseer)" type="checkbox" data-role-name="@(AvailableRoles.Overseer)" 
+                       class="custom-control-input" checked="@(Model.Roles.Exists(role => role.Equals(AvailableRoles.Overseer)))">
                 <label class="custom-control-label" for="role@(AvailableRoles.Overseer)">@(AvailableRoles.Overseer)</label>
             </div>
             <div class="custom-control custom-checkbox">
-                <input id="role@(AvailableRoles.Treasurer)" type="checkbox" data-role-name="@(AvailableRoles.Treasurer)" class="custom-control-input">
+                <input id="role@(AvailableRoles.Treasurer)" type="checkbox" data-role-name="@(AvailableRoles.Treasurer)" 
+                       class="custom-control-input" checked="@(Model.Roles.Exists(role => role.Equals(AvailableRoles.Treasurer)))">
                 <label class="custom-control-label" for="role@(AvailableRoles.Treasurer)">@(AvailableRoles.Treasurer)</label>
             </div>
             <div class="custom-control custom-checkbox">
-                <input id="role@(AvailableRoles.UserManagement)" type="checkbox" data-role-name="@(AvailableRoles.UserManagement)" class="custom-control-input">
+                <input id="role@(AvailableRoles.UserManagement)" type="checkbox" data-role-name="@(AvailableRoles.UserManagement)" 
+                       class="custom-control-input" checked="@(Model.Roles.Exists(role => role.Equals(AvailableRoles.UserManagement)))">
                 <label class="custom-control-label" for="role@(AvailableRoles.UserManagement)">@(AvailableRoles.UserManagement)</label>
             </div>
         </div>

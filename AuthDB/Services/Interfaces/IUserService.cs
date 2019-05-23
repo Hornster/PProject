@@ -30,9 +30,9 @@ namespace AuthDB.Services.Interfaces
         /// <summary>
         /// Deletes user using provided id.
         /// </summary>
-        /// <param name="issuingUserId">Id of user who issued the command. If same as userId - the
+        /// <param name="issuingUserId">RoleId of user who issued the command. If same as userId - the
         /// method will not do anything.</param>
-        /// <param name="userId">Id of user to be removed.</param>
+        /// <param name="userId">RoleId of user to be removed.</param>
         void DeleteUser(string issuingUserId, string userId);
         /// <summary>
         /// Returns roles assigned to user of provided ID.

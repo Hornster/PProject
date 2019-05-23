@@ -52,8 +52,15 @@ namespace PProject.Controllers
             var queryResult = userService.GetUserById(userId);
             var userRoles = userService.GetUserRoles(queryResult.Id);
 
-            var userViewModel = new List<RoleViewModel>();
-            userRoles.ForEach(role => userViewModel.Add(ViewModelMapper.Mapper.Map<RoleViewModel>(role)));
+            var userViewModel = new List<AvailableRoles>();
+            foreach (var role in userRoles)
+            {
+                AvailableRoles parsedRole;
+                if (Enum.TryParse(role.RoleId, out parsedRole))
+                {
+                    userViewModel.Add(parsedRole);
+                }
+            }
 
             var viewModel = new UserEditViewModel();
             viewModel.User = ViewModelMapper.Mapper.Map<UserViewModel>(queryResult);
@@ -78,8 +85,8 @@ namespace PProject.Controllers
                 {
                     newRoles.Add(new RoleModel()
                     {
-                        Name = role,
-                        Id = role
+                        UserId = userId,
+                        RoleId = role
                     });
                 }
             }
@@ -89,7 +96,7 @@ namespace PProject.Controllers
         /// <summary>
         /// Deletes user from the database.
         /// </summary>
-        /// <param name="userId">Id of the user to delete.</param>
+        /// <param name="userId">RoleId of the user to delete.</param>
         /// <returns></returns>
         [AuthorizeRole(AvailableRoles.UserManagement, AvailableRoles.Administrator)]
         public void DeleteUser(string userId)

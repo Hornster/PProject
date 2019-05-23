@@ -24,10 +24,8 @@ namespace AuthDB.Mappers
                 .ForMember(dest => dest.Logins, dest => dest.Ignore());
 
             //Assignment of roles
-            cfg.CreateMap<IdentityRole, RoleModel>()
-                .ForSourceMember(src => src.Users, src => src.DoNotValidate());
-            cfg.CreateMap<RoleModel, IdentityRole>()
-                .ForMember(dest => dest.Users, dest => dest.Ignore());
+            cfg.CreateMap<IdentityUserRole, RoleModel>();
+            cfg.CreateMap<RoleModel, IdentityUserRole>();
 
         }).CreateMapper();
     }

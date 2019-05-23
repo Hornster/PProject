@@ -8,7 +8,7 @@ namespace AuthDB.Model.Interfaces
 {
     public interface IRoleModel
     {
-        string Id { get; set; }
-        string Name { get; set; }
+        string RoleId { get; set; }
+        string UserId { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace PProject.Models.UserManagement
 {
     public class RoleViewModel : IRoleModel
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public string RoleId { get; set; }
+        public string UserId { get; set; }
     }
 }

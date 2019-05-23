@@ -171,7 +171,7 @@ namespace AuthDB.Services.Implementations
             var rolesNames = new List<string>();
             foreach (var role in roles)
             {
-                rolesNames.Add(role.Name);
+                rolesNames.Add(role.RoleId);
             }
 
             return rolesNames;

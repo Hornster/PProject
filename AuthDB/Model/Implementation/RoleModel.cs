@@ -9,7 +9,7 @@ namespace AuthDB.Model.Implementation
 {
     public class RoleModel : IRoleModel
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public string RoleId { get; set; }
+        public string UserId { get; set; }
     }
 }
