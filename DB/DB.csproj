@@ -41,6 +41,8 @@
       <DependentUpon>BDProject.edmx</DependentUpon>
       <LastGenOutput>BDProject.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\FaultsDataView.sql" />
+    <Content Include="Scripts\RentalDataView.sql" />
     <None Include="App.config" />
     <EntityDeploy Include="BDProject.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
