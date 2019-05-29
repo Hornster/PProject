@@ -46,14 +46,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\Authorization\FormSignIn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\Authorization\FormSignIn.Designer.cs">
+      <DependentUpon>FormSignIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Workspace\FormBuildings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Workspace\FormBuildings.Designer.cs">
+      <DependentUpon>FormBuildings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Workspace\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Workspace\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Workspace\FormResidences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Workspace\FormResidences.Designer.cs">
+      <DependentUpon>FormResidences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Authorization\CurrentUser.cs" />
+    <Compile Include="Model\Authorization\Enums\ActionLevel.cs" />
+    <Compile Include="Model\Authorization\Role.cs" />
+    <Compile Include="Model\Authorization\UserData.cs" />
+    <Compile Include="Model\Authorization\UserRoles.cs" />
+    <Compile Include="Model\Data\Building.cs" />
+    <Compile Include="Model\Data\Residence.cs" />
+    <Compile Include="Model\Data\Resident.cs" />
+    <Compile Include="Model\Data\Payment.cs" />
+    <Compile Include="Model\Data\Company.cs" />
+    <Compile Include="Network\Implementation\MockAuthManager.cs" />
+    <Compile Include="Network\Implementation\MockBuildingResource.cs" />
+    <Compile Include="Network\Interfaces\IAuthManager.cs" />
+    <Compile Include="Network\Interfaces\IBuildingResource.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Authorization\FormSignIn.resx">
+      <DependentUpon>FormSignIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Workspace\FormBuildings.resx">
+      <DependentUpon>FormBuildings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Workspace\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Network\Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
