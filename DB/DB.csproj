@@ -108,6 +108,7 @@
     <Compile Include="Model\Implementation\CompanyModel.cs" />
     <Compile Include="Model\Implementation\FaultDataModel.cs" />
     <Compile Include="Model\Implementation\FaultModel.cs" />
+    <Compile Include="Model\Implementation\LatePaymentModel.cs" />
     <Compile Include="Model\Implementation\PaymentBillModel.cs" />
     <Compile Include="Model\Implementation\PaymentModel.cs" />
     <Compile Include="Model\Implementation\RentalDataModel.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Model\Implementation\ResidentModel.cs" />
     <Compile Include="Model\Interfaces\IBuildingModel.cs" />
     <Compile Include="Model\Interfaces\IFaultsDataModel.cs" />
+    <Compile Include="Model\Interfaces\ILatePaymentModel.cs" />
     <Compile Include="Model\Interfaces\IPaymentBillModel.cs" />
     <Compile Include="Model\Interfaces\IPaymentModel.cs" />
     <Compile Include="Model\Interfaces\IRentalDataModel.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="Services\Implementation\AuthenticationService.cs" />
     <Compile Include="Services\Implementation\CompanyService.cs" />
     <Compile Include="Services\Implementation\FaultService.cs" />
+    <Compile Include="Services\Implementation\LatePaymentService.cs" />
     <Compile Include="Services\Implementation\PaymentBillService.cs" />
     <Compile Include="Services\Implementation\PaymentService.cs" />
     <Compile Include="Services\Implementation\RentalService.cs" />
@@ -144,6 +147,7 @@
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
     <Compile Include="Services\Interfaces\ICompanyService.cs" />
     <Compile Include="Services\Interfaces\IFaultService.cs" />
+    <Compile Include="Services\Interfaces\ILatePaymentService.cs" />
     <Compile Include="Services\Interfaces\IPaymentBillService.cs" />
     <Compile Include="Services\Interfaces\IPaymentService.cs" />
     <Compile Include="Services\Interfaces\IRentalService.cs" />
