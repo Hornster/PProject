@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DB.Common.Enums;
 using DB.Model.Interfaces;
@@ -29,12 +27,17 @@ namespace PProject.Controllers
 
         #region ActionMethods
         [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Treasurer, AvailableRoles.Administrator)]
-        public ActionResult Index()
+        public ActionResult Index(IncomeListViewModel viewModel)
         {
-            var viewModel = new ListViewModel<IIncomeData>() { Items = new List<IIncomeData>() };
+            if (viewModel == null)
+            {
+                viewModel = new IncomeListViewModel();
+            }
+
+            viewModel.Items = new List<IIncomeData>();
             //Retrieve all residents.
 
-            var result = service.GetIncomeForBuildings();
+            var result = service.GetIncomeForBuildings(null, viewModel.StartDate, viewModel.EndDate);
 
             result.ToList().ForEach(u => viewModel.Items.Add(ViewModelMapper.Mapper.Map<IIncomeData>(u)));
 
