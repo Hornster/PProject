@@ -182,6 +182,8 @@
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\FaultsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncomeController.cs" />
+    <Compile Include="Controllers\LatePaymentsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentBillsController.cs" />
     <Compile Include="Controllers\PaymentsController.cs" />
@@ -464,6 +466,8 @@
     <Content Include="Views\UserManagement\Index.cshtml" />
     <Content Include="Views\UserManagement\EditUser.cshtml" />
     <Content Include="Views\UserManagement\RoleButtonView.cshtml" />
+    <Content Include="Views\LatePayments\Index.cshtml" />
+    <Content Include="Views\Income\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
