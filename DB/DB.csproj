@@ -105,21 +105,25 @@
       <DependentUpon>BDProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Implementation\BuildingModel.cs" />
+    <Compile Include="Model\Implementation\BuildingProfit.cs" />
     <Compile Include="Model\Implementation\CompanyModel.cs" />
     <Compile Include="Model\Implementation\FaultDataModel.cs" />
     <Compile Include="Model\Implementation\FaultModel.cs" />
+    <Compile Include="Model\Implementation\IncomeData.cs" />
     <Compile Include="Model\Implementation\LatePaymentModel.cs" />
     <Compile Include="Model\Implementation\PaymentBillModel.cs" />
     <Compile Include="Model\Implementation\PaymentModel.cs" />
     <Compile Include="Model\Implementation\RentalDataModel.cs" />
     <Compile Include="Model\Implementation\RepairBillModel.cs" />
     <Compile Include="Model\Implementation\StrictRentalDataModel.cs" />
+    <Compile Include="Model\Interfaces\IBuildingProfit.cs" />
     <Compile Include="Model\Interfaces\ICompanyModel.cs" />
     <Compile Include="Model\Interfaces\IFaultModel.cs" />
     <Compile Include="Model\Implementation\ResidenceModel.cs" />
     <Compile Include="Model\Implementation\ResidentModel.cs" />
     <Compile Include="Model\Interfaces\IBuildingModel.cs" />
     <Compile Include="Model\Interfaces\IFaultsDataModel.cs" />
+    <Compile Include="Model\Interfaces\IIncomeData.cs" />
     <Compile Include="Model\Interfaces\ILatePaymentModel.cs" />
     <Compile Include="Model\Interfaces\IPaymentBillModel.cs" />
     <Compile Include="Model\Interfaces\IPaymentModel.cs" />
@@ -135,6 +139,7 @@
     <Compile Include="Services\Implementation\AuthenticationService.cs" />
     <Compile Include="Services\Implementation\CompanyService.cs" />
     <Compile Include="Services\Implementation\FaultService.cs" />
+    <Compile Include="Services\Implementation\IncomeService.cs" />
     <Compile Include="Services\Implementation\LatePaymentService.cs" />
     <Compile Include="Services\Implementation\PaymentBillService.cs" />
     <Compile Include="Services\Implementation\PaymentService.cs" />
@@ -147,6 +152,7 @@
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
     <Compile Include="Services\Interfaces\ICompanyService.cs" />
     <Compile Include="Services\Interfaces\IFaultService.cs" />
+    <Compile Include="Services\Interfaces\IIncomeService.cs" />
     <Compile Include="Services\Interfaces\ILatePaymentService.cs" />
     <Compile Include="Services\Interfaces\IPaymentBillService.cs" />
     <Compile Include="Services\Interfaces\IPaymentService.cs" />
