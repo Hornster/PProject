@@ -121,10 +121,11 @@ namespace DB.Services.Implementation
 
                     ctx.SaveChanges();
                 }
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("An error occured while processing your request.");
             }
         }
     }

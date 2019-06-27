@@ -153,7 +153,7 @@ namespace DB.Services.Implementation
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Cannot remove residence - remove all faults and rentals connected with it first.");
             }
         }
 
@@ -174,7 +174,7 @@ namespace DB.Services.Implementation
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Cannot remove building - remove all residences assigned to it first.");
             }
         }
         

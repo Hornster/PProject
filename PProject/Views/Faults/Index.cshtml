@@ -28,7 +28,9 @@
                 {
                 <tr>
                     <td><a href="@Url.Action("EditFault", "Faults")?faultId=@fault.id_usterki"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
-                    <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@fault.id_usterki)"></i></td>
+                    <td>
+                        <a href="@Url.Action("DeleteFault", "Faults", new {faultId = fault.id_usterki})"><i class="fas fa-dumpster hoverable red-text" aria-hidden="true"></i></a>
+                    </td>
                     <td>@fault.adres_budynku</td>
                     <td>@fault.numer</td>
                     <td>@fault.stan</td>
@@ -55,14 +57,5 @@
         $('.dataTables_length').addClass('bs-select');
         $('[datatoggle="tooltip"]').tooltip();
     });
-    //Removes given residence from building.
-    function deleteRecord(faultId) {
-        $.post("@Url.Action("DeleteFault", "Faults")",
-            {
-                faultId: faultId
-            }).then(function() {
-            window.location.href = window.location.href;
-        });
-    }
 
 </script>

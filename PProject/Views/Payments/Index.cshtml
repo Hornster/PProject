@@ -24,13 +24,13 @@
         {
             foreach (var payment in Model.Items)
             {
-                <tr>
-                    <td><a href="@Url.Action("EditPayment", "Payments")?paymentId=@payment.id_platnosci"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
-                    <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@payment.id_platnosci)"></i></td>
-                    <td>@payment.cena</td>
-                    <td>@payment.data_platnosci</td>
-                    <td>@payment.tytul</td>
-                </tr>
+            <tr>
+                <td><a href="@Url.Action("EditPayment", "Payments")?paymentId=@payment.id_platnosci"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
+                <td><a href="@Url.Action("DeletePayment", "Payments", new {rentalId = Model.RentalId, paymentId = payment.id_platnosci})"><i class="fas fa-dumpster hoverable red-text" aria-hidden="true"></i></a></td>
+                <td>@payment.cena</td>
+                <td>@payment.data_platnosci</td>
+                <td>@payment.tytul</td>
+            </tr>
             }
         }
         else
@@ -51,15 +51,6 @@
         $('.dataTables_length').addClass('bs-select');
     });
 
-    //Removes given payment from rental.
-    function deleteRecord(paymentId) {
-        $.post("@Url.Action("DeletePayment", "Payments")",
-            {
-                paymentId: paymentId
-            }).then(function() {
-            window.location.href = window.location.href;
-        });
-    }
 
 </script>
 

@@ -30,7 +30,9 @@
             {
             <tr>
                 <td><a href="@Url.Action("EditRepair", "Repairs")?repairId=@repair.id_naprawy"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
-                <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@repair.id_naprawy)"></i></td>
+                <td>
+                    <a href="@Url.Action("DeleteRepair", "Repairs", new {faultId = repair.id_usterki, repairId = repair.id_naprawy})"><i class="fas fa-dumpster hoverable red-text" aria-hidden="true"></i></a>
+                </td>
                 <td>@repair.id_naprawy</td>
                 <td>@repair.nr_telefonu</td>
                 <td>@repair.stan</td>
@@ -58,13 +60,4 @@
         var table = $('#repairsTable').DataTable();
         $('.dataTables_length').addClass('bs-select');
     });
-    //Removes given residence from building.
-    function deleteRecord(repairId) {
-        $.post("@Url.Action("DeleteRepair", "Repairs")",
-            {
-                repairId: repairId
-            }).then(function() {
-            window.location.href = window.location.href;
-        });
-    }
 </script>

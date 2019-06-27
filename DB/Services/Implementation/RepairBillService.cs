@@ -107,7 +107,7 @@ namespace DB.Services.Implementation
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Could not fulfill the request.");
             }
         }
     }
