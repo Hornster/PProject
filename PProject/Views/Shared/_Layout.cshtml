@@ -58,10 +58,32 @@
             </ul>
         </div>
         <div class="container body-content">
+            @{
+                var errors = (IEnumerable<string>) ViewBag.Errors ?? new List<string>();
+                var messages = (IEnumerable<string>) ViewBag.Messages ?? new List<string>();
+                foreach (var error in errors)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> @error
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                foreach (var message in messages)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @messages
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+            }
             @RenderBody()
-            <hr />
+            <hr/>
             <footer>
-                <p>&copy; @DateTime.Now.Year - Karol Kozuch</p>
+                <p>&copy; @DateTime.Now.Year - Karol Kozuch & Friends</p>
             </footer>
         </div>
 
