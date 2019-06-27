@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using DB.Common.Enums;
@@ -40,6 +41,7 @@ namespace PProject.Controllers
 
             result.ForEach(u => viewModel.Items.Add(ViewModelMapper.Mapper.Map<FaultDataViewModel>(u)));
 
+            ViewBag.States = string.Join(", ", faultService.GetAllStateNames());
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]

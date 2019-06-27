@@ -38,5 +38,7 @@ namespace DB.Services.Interfaces
         /// </summary>
         /// <param name="faultId"></param>
         void RemoveFault(int faultId);
+
+        IEnumerable<string> GetAllStateNames();
     }
 }

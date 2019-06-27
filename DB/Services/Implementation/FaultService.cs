@@ -131,6 +131,23 @@ namespace DB.Services.Implementation
                 Console.WriteLine(ex.Message);
             }
         }
-        
+
+        public IEnumerable<string> GetAllStateNames()
+        {
+            IEnumerable<string> result = null;
+            try
+            {
+                using (var ctx = new DBProjectEntities())
+                {
+                    result = ctx.StanyUsterek.Select(x => x.stan).OrderBy(x => x).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return result;
+        }
     }
 }
