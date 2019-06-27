@@ -26,7 +26,9 @@
                 {
                     <tr>
                         <td><a href="@Url.Action("EditCompany", "Companies")?companyId=@company.id_firmy"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
-                        <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@company.id_firmy)"></i></td>
+                        <td>
+                            <a href="@Url.Action("DeleteCompany", "Companies", new {companyId = company.id_firmy})"><i class="fas fa-dumpster hoverable red-text" aria-hidden="true"></i></a>
+                        </td>
                         <td>@company.NIP</td>
                         <td>@company.nazwa_firmy</td>
                         <td>@company.nr_telefonu</td>
@@ -50,14 +52,4 @@
         var table = $('#companiesTable').DataTable();
         $('.dataTables_length').addClass('bs-select');
     });
-    //Removes given residence from building.
-    function deleteRecord(companyId) {
-        $.post("@Url.Action("DeleteCompany", "Companies")",
-            {
-                companyId: companyId
-            }).then(function() {
-            window.location.href = window.location.href;
-        });
-    }
-
 </script>

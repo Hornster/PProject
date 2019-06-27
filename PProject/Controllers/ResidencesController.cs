@@ -36,6 +36,7 @@ namespace PProject.Controllers
 
             result.ForEach(u=>viewModel.Items.Add(ViewModelMapper.Mapper.Map<BuildingViewModel>(u)));
 
+            ViewBag.Errors = TempData["Errors"];
             return View(viewModel);
         }
         [HttpGet]
@@ -54,21 +55,40 @@ namespace PProject.Controllers
 
             var buildingResult = residencesService.GetSingleBuilding(buildingId);
             viewModel.Building.adres_budynku = buildingResult.adres_budynku;
-
+            
+            ViewBag.Errors = TempData["Errors"];
             return View("BuildingDetails", viewModel);
         }
-        [HttpPost]
+        [HttpGet]
         [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
-        public void DeleteResidence(int buildingId, int residenceId)
+        public ActionResult DeleteResidence(int buildingId, int residenceId)
         {
-            residencesService.RemoveResidence(buildingId, residenceId);
+            try
+            {
+                residencesService.RemoveResidence(buildingId, residenceId);
+            }
+            catch (Exception e)
+            {
+                TempData["Errors"] = new[] { e.Message };
+            }
+
+            return RedirectToAction("GetBuildingDetails", "Residences", new { buildingId  = buildingId});
         }
 
         [HttpPost]
         [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
-        public void DeleteBuilding(int buildingId)
+        public ActionResult DeleteBuilding(int buildingId)
         {
-            residencesService.RemoveBuilding(buildingId);
+            try
+            {
+                residencesService.RemoveBuilding(buildingId);
+            }
+            catch (Exception e)
+            {
+                TempData["Errors"] = new[] { e.Message };
+            }
+
+            return RedirectToAction("Index", "Residences");
         }
         /// <summary>
         /// Returns residence edit form. Can serve both add and edit function. 

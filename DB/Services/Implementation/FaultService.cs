@@ -128,7 +128,7 @@ namespace DB.Services.Implementation
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Cannot remove the fault - remove connected repairs first.");
             }
         }
 

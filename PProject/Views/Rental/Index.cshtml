@@ -33,7 +33,8 @@
             {
             <tr>
                 <td><a href="@Url.Action("EditRental", "Rental")?rentalId=@rental.id_wynajmu"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
-                <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@rental.id_wynajmu)"></i></td>
+                <td><a href="@Url.Action("DeleteRental", "Rental", new {rentalId = rental.id_wynajmu})"><i class="fas fa-dumpster hoverable red-text" aria-hidden="true"></i></a></td>
+                @*<td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@rental.id_wynajmu)"></i></td>*@
                 <td>@rental.imie</td>
                 <td>@rental.nazwisko</td>
                 <td>@rental.numer</td>

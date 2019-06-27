@@ -110,7 +110,7 @@ namespace DB.Services.Implementation
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Cannot delete provided repair - remove connected bills first.");
             }
         }
 

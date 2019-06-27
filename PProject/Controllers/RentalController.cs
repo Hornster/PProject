@@ -43,6 +43,7 @@ namespace PProject.Controllers
 
             result.ForEach(u => viewModel.Items.Add(ViewModelMapper.Mapper.Map<RentalDataViewModel>(u)));
 
+            ViewBag.Errors = TempData["Errors"];
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
@@ -72,9 +73,18 @@ namespace PProject.Controllers
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
-        public void DeleteRental(int rentalId)
+        public ActionResult DeleteRental(int rentalId)
         {
-            rentalService.RemoveRental(rentalId);
+            try
+            {
+                rentalService.RemoveRental(rentalId);
+            }
+            catch (Exception e)
+            {
+                TempData["Errors"] = new[] { e.GetBaseException().Message };
+            }
+
+            return RedirectToAction("Index", "Rental");
         }
 
         [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
