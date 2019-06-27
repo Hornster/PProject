@@ -130,7 +130,8 @@ namespace DB.Services.Implementation
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Could not remove selected rental. Make sure there are no " +
+                                    "payments and payment bills present for this rental.");
             }
         }
 
@@ -230,7 +231,7 @@ namespace DB.Services.Implementation
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("An error occured while processing request.");
             }
         }
 
@@ -329,7 +330,7 @@ namespace DB.Services.Implementation
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("An error occured while processing request.");
             }
         }
     }

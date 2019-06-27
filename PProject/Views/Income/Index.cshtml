@@ -1,6 +1,8 @@
-﻿@model PProject.Models.ListViewModel<DB.Model.Interfaces.IIncomeData>
+﻿@model PProject.Models.IncomeListViewModel
 @{
     ViewBag.Title = "Income";
+    
+    ViewBag.Errors = Model.ErrorMessages;
 }
 
 <div id="header" class="container" style="width:100%">
@@ -18,34 +20,113 @@
         </tr>
         </thead>
         <tbody>
-            @if (Model?.Items?.Count > 0)
-            {
-                foreach (var latePayment in Model.Items)
-                 {
-                    <tr>
-                        <td>@latePayment.Address</td>
-                        <td>@latePayment.Income</td>
-                        <td>@latePayment.Expense</td>
-                        <td>@latePayment.Profit</td>
-                    </tr>
-                 }
-            }
-            else
+        @if (Model?.Items?.Count > 0)
+        {
+            foreach (var latePayment in Model.Items)
             {
                 <tr>
-                    <td colspan="6" style="text-align: center">No items to display.</td>
+                    <td>@latePayment.Address</td>
+                    <td>@latePayment.Income</td>
+                    <td>@latePayment.Expense</td>
+                    <td>@latePayment.Profit</td>
                 </tr>
             }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" style="text-align: center">No items to display.</td>
+            </tr>
+        }
         </tbody>
     </table>
 </div>
-
-
+@using (Html.BeginForm("Index", "Income", FormMethod.Get, new { id = "filterForm" }))
+{
+    <div id="filterInputs" class="container" style="float: left; width: 100%">
+        <div class="jumbotron">
+            <h2>Filter</h2>
+            <div id="startDate" class="md-form">
+                <input value="@(Model.StartDate?.ToString("u"))" type="text" id="startDateInput" name="startDate" class="form-control"
+                       data-toggle="popover" data-trigger="focus" title="Wrong format" data-placement="Right" data-content="Date format incorrect. Try: yyyy-mm-dd hh:mm:ss.">
+                <label for="startDateInput">Start Date</label>
+            </div>
+            <div id="endDate" class="md-form">
+                <input value="@(Model.EndDate?.ToString("u"))" type="text" id="endDateInput" name="endDate" class="form-control"
+                       data-toggle="popover" data-trigger="focus" title="Wrong format" data-placement="Right" data-content="Date format incorrect. Try: yyyy-mm-dd hh:mm:ss.">
+                <label for="endDateInput">End Date</label>
+            </div>
+        </div>
+    </div>
+    <div id="controlButtons" class="container" style="float: right">
+        <input id="filterButton" type="submit" class="btn btn-success" value="Filter"/>
+    </div>
+}
 
 <script>
-    ///Initializes the table.
-    $(document).ready(function () {
-        var table = $('#incomeTable').DataTable();
-        $('.dataTables_length').addClass('bs-select');
+    $(function () {
+        prepare();
     });
+
+    function prepare() {
+        $('#filterForm').submit(function (eventObject) {
+            onChangesConfirm(eventObject);
+        });
+        var table = $('#incomeTable');
+        table.DataTable();
+        $('.dataTables_length').addClass('bs-select');
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
+        });
+    }
+
+    function onChangesConfirm(eventObject) {
+        var startDateWrong = false;
+        var endDateWrong = false;
+        var startDate = $('#startDateInput')[0].value;
+        var endDate = $('#endDateInput')[0].value;
+        var convertedStartDate = null;
+        var convertedEndDate = null;
+
+        if (startDate !== null && startDate !== "") {
+            try {
+                convertedStartDate = new Date(startDate).toISOString();
+            } catch (ex) {
+                showPopupDate('#startDateInput');
+                startDateWrong = true; //Remember that there was something wrong with ate and give user chance to correct it.
+            }
+        }
+        if (endDate !== null && endDate !== "") {
+            try {
+                convertedEndDate = new Date(endDate).toISOString();
+            } catch (ex) {
+                showPopupDate('#endDateInput');
+                endDateWrong = true; //Remember that there was something wrong with ate and give user chance to correct it.
+            }
+        }
+        if (!startDateWrong && !endDateWrong) {
+            if (!allNecessaryFieldsFilled(startDate, endDate)) {
+                $('#wrongInputModal').modal('show'); //show popup - one of required data chunks is incomplete.
+            } else {
+                $('#startDateInput').val(convertedStartDate);
+                $('#endDateInput').val(convertedEndDate);
+            }
+        } else {
+            eventObject.preventDefault();
+        }
+    }
+    //Something was wrong with start date input. Show popup.
+    function showPopupDate(id) {
+        $(id).popover('show');
+    }
+
+    function allNecessaryFieldsFilled(startDate, endDate) {
+        if (startDate === null || endDate === null) {
+            return false; //show popup - one of required data chunks is incomplete.
+        } else if (startDate === "" || endDate === "") {
+            return false; //show popup - one of required data chunks is incomplete.
+        }
+
+        return true;
+    }
 </script>

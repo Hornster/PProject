@@ -37,6 +37,7 @@ namespace PProject.Controllers
 
             result.ForEach(u => viewModel.Items.Add(ViewModelMapper.Mapper.Map<CompanyViewModel>(u)));
 
+            ViewBag.Errors = TempData["Errors"];
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
@@ -54,9 +55,18 @@ namespace PProject.Controllers
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]
-        public void DeleteCompany(int companyId)
+        public ActionResult DeleteCompany(int companyId)
         {
-            companyService.RemoveCompany(companyId);
+            try
+            {
+                companyService.RemoveCompany(companyId);
+            }
+            catch (Exception e)
+            {
+                TempData["Errors"] = new[] {e.Message};
+            }
+
+            return RedirectToAction("Index", "Companies");
         }
 
         [AuthorizeRole(AvailableRoles.Overseer, AvailableRoles.Administrator)]

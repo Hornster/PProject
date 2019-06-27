@@ -28,7 +28,9 @@
             {
                 <tr>
                     <td><a href="@Url.Action("EditResidence", "Residences")?buildingId=@residence.id_budynku&residenceId=@residence.id_mieszkania"><i class="fas fa-book mr-2 grey-text hoverable"></i></a></td>
-                    <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@residence.id_budynku, @residence.id_mieszkania)"></i></td>
+                    <td>
+                        <a href="@Url.Action("DeleteResidence", "Residences", new {buildingId = residence.id_budynku, residenceId = residence.id_mieszkania})"><i class="fas fa-dumpster hoverable red-text" aria-hidden="true"></i></a>
+                    </td>
                     <td>@residence.id_mieszkania</td>
                     <td>@residence.numer</td>
                     <td>@residence.metraz</td>
@@ -107,16 +109,7 @@
     function hideDeleteButtonInfo() {
         $('#deleteBuildingButton').popover('hide');
     }
-    //Removes given residence from building.
-    function deleteRecord(buildingId, residenceId) {
-        $.post("@Url.Action("DeleteResidence", "Residences")",
-            {
-                buildingId: buildingId,
-                residenceId: residenceId
-            }).then(function() {
-            window.location.href = window.location.href;
-        });
-    }
+    
 
     function onChangesConfirm(buildingId) {
         var newAddress = $('#buildingAddressInput')[0].value;

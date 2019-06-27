@@ -128,9 +128,26 @@ namespace DB.Services.Implementation
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Cannot remove the fault - remove connected repairs first.");
             }
         }
-        
+
+        public IEnumerable<string> GetAllStateNames()
+        {
+            IEnumerable<string> result = null;
+            try
+            {
+                using (var ctx = new DBProjectEntities())
+                {
+                    result = ctx.StanyUsterek.Select(x => x.stan).OrderBy(x => x).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return result;
+        }
     }
 }

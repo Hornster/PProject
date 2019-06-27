@@ -8,5 +8,6 @@ namespace PProject.Models
     public class ListViewModel<T>
     {
         public List<T> Items { get; set; }
+        public List<string> ErrorMessages { get; set; }
     }
 }

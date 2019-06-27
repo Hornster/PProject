@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using DB.Common.Enums;
@@ -40,6 +41,8 @@ namespace PProject.Controllers
 
             result.ForEach(u => viewModel.Items.Add(ViewModelMapper.Mapper.Map<FaultDataViewModel>(u)));
 
+            ViewBag.Errors = TempData["Errors"];
+            ViewBag.States = string.Join(", ", faultService.GetAllStateNames());
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
@@ -57,9 +60,18 @@ namespace PProject.Controllers
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
-        public void DeleteFault(int faultId)
+        public ActionResult DeleteFault(int faultId)
         {
-            faultService.RemoveFault(faultId);
+            try
+            {
+                faultService.RemoveFault(faultId);
+            }
+            catch (Exception e)
+            {
+                TempData["Errors"] = new[] { e.Message };
+            }
+
+            return RedirectToAction("Index", "Faults");
         }
 
         [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]

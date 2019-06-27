@@ -42,6 +42,7 @@ namespace PProject.Controllers
 
             result.ForEach(u => viewModel.Items.Add(ViewModelMapper.Mapper.Map<RepairViewModel>(u)));
 
+            ViewBag.Errors = TempData["Errors"];
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
@@ -79,9 +80,18 @@ namespace PProject.Controllers
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
-        public void DeleteRepair(int repairId)
+        public ActionResult DeleteRepair(int faultId, int repairId)
         {
-            repairsService.RemoveRepair(repairId);
+            try
+            {
+                repairsService.RemoveRepair(repairId);
+            }
+            catch (Exception e)
+            {
+                TempData["Errors"] = new[] { e.Message };
+            }
+
+            return RedirectToAction("Index", "Repairs", new {faultId = faultId});
         }
         [AuthorizeRole(AvailableRoles.Janitor, AvailableRoles.Administrator)]
         public void ConfirmRepairEdit(int faultId, int repairId, string repairState, DateTime? startDate,

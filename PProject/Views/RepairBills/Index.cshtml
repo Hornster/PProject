@@ -28,7 +28,9 @@
                 {
                     <tr>
                         <td><a href="@Url.Action("EditRepairBill", "RepairBills")?repairBillId=@repairBill.id_faktury"><i class="fas fa-book mr-2 grey-text hoverable" aria-hidden="true"></i></a></td>
-                        <td><i class="fas fa-dumpster hoverable red-text" onclick="deleteRecord(@repairBill.id_faktury)"></i></td>
+                        <td>
+                            <a href="@Url.Action("DeleteRepairBill", "RepairBills", new {repairId = repairBill.id_naprawy, repairBillId = repairBill.id_faktury})"><i class="fas fa-dumpster hoverable red-text" aria-hidden="true"></i></a>
+                        </td>
                         <td>@repairBill.numer_faktury</td>
                         <td>@repairBill.data_platnosci</td>
                         <td>@repairBill.cena</td>
@@ -53,15 +55,6 @@
         var table = $('#repairBillsTable').DataTable();
         $('.dataTables_length').addClass('bs-select');
     });
-    //Removes given residence from building.
-    function deleteRecord(repairBillId) {
-        $.post("@Url.Action("DeleteRepairBill", "RepairBills")",
-            {
-                repairBillId: repairBillId
-            }).then(function() {
-            window.location.href = window.location.href;
-        });
-    }
     //Returns the user to Repairs table.
     function onBack(repairId) {
         location.href = '@Url.Action("BackToRepairsTable", "RepairBills")?repairId=' + repairId;

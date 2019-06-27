@@ -46,23 +46,22 @@ namespace DB.Services.Implementation
 
                     foreach (var residence in residences)
                     {
-                        Func<Platnosci, bool> incomeFilterPredicate = (x) => true;
-                        Func<FakturyNapraw, bool> expenseFilterPredicate = (x) => true;
+                        Predicate<FakturyNapraw> firstPredicate = x => true, secondPredicate = x => true;
+                        var incomeBills = residence.Wynajmy.SelectMany(s => s.Platnosci);
                         if (startDate.HasValue)
                         {
-                            incomeFilterPredicate = (x) =>  x.data_platnosci > startDate.Value;
-                            expenseFilterPredicate = (x) => x.data_platnosci > startDate.Value;
+                            incomeBills = incomeBills.Where(x => x.data_platnosci > startDate.Value);
+                            firstPredicate = (x) => x.data_platnosci > startDate.Value;
                         }
 
                         if (endDate.HasValue)
                         {
-                            incomeFilterPredicate = (x) => incomeFilterPredicate(x) && x.data_platnosci < endDate.Value;
-                            expenseFilterPredicate = (x) => expenseFilterPredicate(x) && x.data_platnosci < endDate.Value;
+                            incomeBills = incomeBills.Where(x => x.data_platnosci < endDate.Value);
+                            secondPredicate = (x) => x.data_platnosci < endDate.Value;
                         }
 
-                        var incomeBills = residence.Wynajmy.SelectMany(s => s.Platnosci).Where(incomeFilterPredicate).ToList();
-                        var expenseBills = residence.Usterki.SelectMany(s => s.Naprawy.SelectMany(ss => ss.FakturyNapraw).Where(expenseFilterPredicate)).ToList();
-                        incomeBills.ForEach(x => totalIncome += x.cena);
+                        incomeBills.ToList().ForEach(x => totalIncome += x.cena);
+                        var expenseBills = residence.Usterki.SelectMany(s => s.Naprawy.SelectMany(ss => ss.FakturyNapraw).Where(x => firstPredicate(x) && secondPredicate(x))).ToList();
                         expenseBills.ForEach(x => totalExpense += x.cena);
                         foreach (var incomeBill in incomeBills)
                         {

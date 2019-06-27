@@ -35,6 +35,7 @@ namespace PProject.Controllers
             viewModel.RentalId = rentalId;
             result.ForEach(u => viewModel.Items.Add(ViewModelMapper.Mapper.Map<PaymentViewModel>(u)));
 
+            ViewBag.Errors = TempData["Errors"];
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
@@ -58,9 +59,19 @@ namespace PProject.Controllers
             return View(viewModel);
         }
         [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
-        public void DeletePayment(int paymentId)
+        public ActionResult DeletePayment(int rentalId, int paymentId)
         {
-            paymentService.RemovePayment(paymentId);
+            try
+            {
+                paymentService.RemovePayment(paymentId);
+            }
+            catch (Exception e)
+            {
+                TempData["Errors"] = new[] { e.Message };
+            }
+
+            return RedirectToAction("Index", "Payments", new {rentalId = rentalId });
+
         }
         [AuthorizeRole(AvailableRoles.Treasurer, AvailableRoles.Administrator)]
         public void ConfirmPaymentEdit(int rentalId, int paymentId, float paymentValue, DateTime paymentDate, string paymentTitle)

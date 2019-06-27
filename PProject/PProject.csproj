@@ -209,6 +209,7 @@
     <Compile Include="Models\Companies\CompanyViewModel.cs" />
     <Compile Include="Models\Faults\FaultDataViewModel.cs" />
     <Compile Include="Models\Faults\FaultViewModel.cs" />
+    <Compile Include="Models\IncomeListViewModel.cs" />
     <Compile Include="Models\PaymentBills\PaymentBillListViewModel.cs" />
     <Compile Include="Models\PaymentBills\PaymentBillViewModel.cs" />
     <Compile Include="Models\Payments\PaymentListViewModel.cs" />
