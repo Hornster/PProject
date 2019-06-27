@@ -15,7 +15,7 @@
                 <th scope="col" class="col-sm-1"></th> <!--removing control-->
                 <th scope="col" class="col-md-1">Building Address</th>
                 <th scope="col" class="col-sm-1">Residence Number</th>
-                <th scope="col" class="col-md-1">State</th>
+                <th scope="col" class="col-md-1">State<i style="color:deepskyblue" datatoggle="tooltip" data-original-title="@ViewBag.States"> (?)</i></th>
                 <th scope="col">Description</th>
                 <th scope="col" class="col-sm-1"></th> <!--repairs link control-->
                 @*Iterate each element in model for given row in table.*@
@@ -53,6 +53,7 @@
     $(document).ready(function () {
         var table = $('#faultsTable').DataTable();
         $('.dataTables_length').addClass('bs-select');
+        $('[datatoggle="tooltip"]').tooltip();
     });
     //Removes given residence from building.
     function deleteRecord(faultId) {
